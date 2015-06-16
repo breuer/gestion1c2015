@@ -432,6 +432,10 @@ select	distinct
 		cli_id
 from NEW_SOLUTION.Clientes
 
+--Agregar roles a los usuarios, por defecto todos van a ser clientes.
+insert into NEW_SOLUTION.Usuarios_roles(usu_id,rol_id)
+select usu_id,2 from NEW_SOLUTION.Usuarios
+
 --Cargar emisores de tarjetas de creditos.
 insert  into NEW_SOLUTION.Tarjetas_emisores(tarjemis_nombre)
 select  distinct
