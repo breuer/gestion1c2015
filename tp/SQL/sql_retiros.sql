@@ -1,5 +1,5 @@
 --Dice si una cuenta esta activa.
-alter function NEW_SOLUTION.cuenta_activa(@ctaNum numeric(18,0),@idpais int)
+create function NEW_SOLUTION.cuenta_activa(@ctaNum numeric(18,0),@idpais int)
 returns int
 as
 begin
@@ -12,7 +12,7 @@ begin
 end
 
 --Retirar dinero
-alter procedure NEW_SOLUTION.cuenta_retirar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@codBco numeric(18,0),@cliId bigint,@fechaSys datetime)
+create procedure NEW_SOLUTION.cuenta_retirar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@codBco numeric(18,0),@cliId bigint,@fechaSys datetime)
 as
 	--Revisar que la cuenta se encuentra activa.
 	if (NEW_SOLUTION.cuenta_activa(@ctaNum,@idpais)=1)
