@@ -592,7 +592,7 @@ as
 	from
 		NEW_SOLUTION.Usuarios u
 	where 
-		u.usu_estado <> 'n'			
+		u.usu_estado =5			
 go
 
 --Devuelve el listado de los usuarios inactivos.
@@ -610,5 +610,5 @@ as
 	from
 		NEW_SOLUTION.usuarios u
 	where 
-		u.usu_estado <> 's'			
+		u.usu_estado <> 5			
 go
