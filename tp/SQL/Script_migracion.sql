@@ -37,6 +37,7 @@ create table NEW_SOLUTION.Login
 (
 	login_id		bigint identity(1,1),
 	login_user		varchar(50),
+	login_user_id	int,
 	login_fecha		datetime,
 	login_resultado	varchar(1),
 	primary key(login_id)	
