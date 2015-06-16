@@ -1,5 +1,5 @@
 --Dice si la cuenta pertenece a ese cliente.
-alter function NEW_SOLUTION.cuenta_pertenece_cliente(@ctaNum numeric(18,0),@idpais int,@cliId bigint)
+create function NEW_SOLUTION.cuenta_pertenece_cliente(@ctaNum numeric(18,0),@idpais int,@cliId bigint)
 returns int
 as
 begin
@@ -12,7 +12,7 @@ begin
 end
 
 --Dice si la tarjeta es del cliente.
-alter function NEW_SOLUTION.tarjeta_cliente_valida(@tarjId bigint,@cliId bigint)
+create function NEW_SOLUTION.tarjeta_cliente_valida(@tarjId bigint,@cliId bigint)
 returns int
 as
 begin
@@ -25,7 +25,7 @@ begin
 end
 
 --Realizar deposito en una cuenta.
-alter procedure NEW_SOLUTION.cuenta_depositar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@moneda int,@cliID bigint,@tarjId bigint,@fechaSys datetime)
+create procedure NEW_SOLUTION.cuenta_depositar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@moneda int,@cliID bigint,@tarjId bigint,@fechaSys datetime)
 as
 	--Si el importe es aceptado
 	if (@importe>1)
