@@ -49,7 +49,7 @@ create table NEW_SOLUTION.Login_incorrectos
 	logfalla_id			bigint identity(1,1),
 	logfalla_user		varchar(50),
 	logfalla_user_id	int,	
-	logfala_intento		int,
+	logfalla_intento		int,
 	primary key(logfalla_id)	
 )
 
