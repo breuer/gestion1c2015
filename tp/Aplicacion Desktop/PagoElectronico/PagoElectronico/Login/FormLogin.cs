@@ -20,7 +20,12 @@ namespace PagoElectronico.Login
             this.tbPassword.PasswordChar = '*';
         }
 
-        private void btLogin_Click(object sender, EventArgs e)
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btLogin_Click_1(object sender, EventArgs e)
         {
             if (this.tbUsername.Text != "" || this.tbPassword.Text != "")
             {
@@ -57,7 +62,7 @@ namespace PagoElectronico.Login
             }
         }
 
-        private void btClose_Click(object sender, EventArgs e)
+        private void btClose_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }

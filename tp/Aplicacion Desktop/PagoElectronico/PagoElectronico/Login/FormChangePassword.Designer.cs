@@ -32,12 +32,14 @@
             this.btCancel = new System.Windows.Forms.Button();
             this.btAceptar = new System.Windows.Forms.Button();
             this.tbPassword = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 74);
+            this.label1.Location = new System.Drawing.Point(22, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 0;
@@ -45,7 +47,7 @@
             // 
             // btCancel
             // 
-            this.btCancel.Location = new System.Drawing.Point(29, 203);
+            this.btCancel.Location = new System.Drawing.Point(25, 90);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 1;
@@ -55,7 +57,7 @@
             // 
             // btAceptar
             // 
-            this.btAceptar.Location = new System.Drawing.Point(182, 203);
+            this.btAceptar.Location = new System.Drawing.Point(106, 90);
             this.btAceptar.Name = "btAceptar";
             this.btAceptar.Size = new System.Drawing.Size(75, 23);
             this.btAceptar.TabIndex = 2;
@@ -65,24 +67,37 @@
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(157, 74);
+            this.tbPassword.Location = new System.Drawing.Point(25, 53);
             this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(100, 20);
+            this.tbPassword.Size = new System.Drawing.Size(219, 20);
             this.tbPassword.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btAceptar);
+            this.groupBox1.Controls.Add(this.tbPassword);
+            this.groupBox1.Controls.Add(this.btCancel);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(268, 133);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Contraseña";
             // 
             // FormChangePassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
-            this.Controls.Add(this.tbPassword);
-            this.Controls.Add(this.btAceptar);
-            this.Controls.Add(this.btCancel);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(292, 162);
+            this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormChangePassword";
-            this.Text = "FormChangePassword";
+            this.Text = "Cambiar contraseña";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -92,5 +107,6 @@
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.Button btAceptar;
         private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

@@ -21,36 +21,42 @@ namespace PagoElectronico
         {
             if (DataSession.Usuario == null)
             {
-                //MessageBox.Show("Usuario == null");
-                this.pnlLogin.Visible = true;
-                this.pnlSession.Visible = false;
-                this.pnlRol.Visible = false;
-                this.pnlUsuario.Visible = false;
-                this.pnlCliente.Visible = false;
-                this.pnlListados.Visible = false;
+                //En caso de que no halla un usuario cargado en la sesion, solo mostrar el login.
+                this.btLogin.Visible            = true;
+                this.btLogout.Visible           = false;
+                this.btChangePassword.Visible   = false;
+
+                //this.pnlSession.Visible     = false;
+                this.pnlRol.Visible         = false;
+                this.pnlUsuario.Visible     = false;
+                this.pnlCliente.Visible     = false;
+                this.pnlListados.Visible    = false;
             }
             else
             {
-                //MessageBox.Show("Usuario <> null");
-                this.pnlLogin.Visible = false;
-                this.pnlSession.Visible = true;
+                //Habilitar el login.
+                this.btLogin.Visible          = false;
+                this.btLogout.Visible         = true;
+                this.btChangePassword.Visible = true;
+
+                //this.pnlSession.Visible = true;
+
+                //Cuando hay un usuario, recorrer las funcionalidades y habilitar los paneles.
                 foreach (Funcionalidad funcionalidad in DataSession.Usuario.RolSeleccionado.Funcionalidades)
                 {
-                    if (funcionalidad.Nombre.Equals("Rol"))
+                    MessageBox.Show(funcionalidad.Nombre);
+
+                    //Segun la funcionalidad.
+                    switch (funcionalidad.Nombre)
                     {
-                        this.pnlRol.Visible = true;
-                    }
-                    if (funcionalidad.Nombre.Equals("Usuario"))
-                    {
-                        this.pnlUsuario.Visible = true;
-                    }
-                    if (funcionalidad.Nombre.Equals("Cliente"))
-                    {
-                        this.pnlCliente.Visible = true;
-                    }
-                    if (funcionalidad.Nombre.Equals("Listados"))
-                    {
-                        this.pnlListados.Visible = true;
+                        case "Roles"        : this.pnlRol.Visible = true;
+                                              break;
+                        case "Usuarios"     : this.pnlUsuario.Visible = true;
+                                              break;
+                        case "Clientes"     : this.pnlCliente.Visible = true;
+                                              break;
+                        case "Estadisticas" : this.pnlListados.Visible = true;
+                                              break;
                     }
                 }
             }
@@ -63,15 +69,16 @@ namespace PagoElectronico
         }
 
         /****************** LOGIN *******************************************************/
-        private void btLogin_Click(object sender, EventArgs e)
+        private void btLogin_Click_1(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
             FormLogin frm = new FormLogin(usuario);
             frm.ShowDialog();
 
             if (frm.DialogResult == DialogResult.OK)
-            {                
+            {
                 DataSession.Usuario = usuario;
+                label_usuario.Text = "Usuario:"+usuario.Username;
                 habilitarPaneles();
             }
         }
@@ -80,10 +87,11 @@ namespace PagoElectronico
         private void btLogout_Click(object sender, EventArgs e)
         {
             DataSession.Usuario = null;
+            label_usuario.Text = "No hay una sesión activa";
             habilitarPaneles();
         }
 
-        private void btChangePassword_Click(object sender, EventArgs e)
+        private void btChangePassword_Click_1(object sender, EventArgs e)
         {
             FormChangePassword frm = new FormChangePassword(DataSession.Usuario);
             frm.ShowDialog();
@@ -140,5 +148,9 @@ namespace PagoElectronico
             this.Close();
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
