@@ -12,6 +12,7 @@ using PagoElectronico.ABM_Rol;
 using PagoElectronico.ABM_de_Usuario;
 using PagoElectronico.ABM_Cliente;
 using PagoElectronico.Listados;
+using PagoElectronico.Transferencias;
 
 namespace PagoElectronico
 {
@@ -232,6 +233,12 @@ namespace PagoElectronico
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btn_transferencias_Click(object sender, EventArgs e)
+        {
+            FormTransfer frmTransf = new FormTransfer();
+            frmTransf.Show();
         }
     }
 }

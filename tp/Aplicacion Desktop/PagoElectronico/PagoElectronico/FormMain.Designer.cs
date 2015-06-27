@@ -299,6 +299,7 @@
             this.btn_transferencias.TabIndex = 4;
             this.btn_transferencias.Text = "Transferencias";
             this.btn_transferencias.UseVisualStyleBackColor = true;
+            this.btn_transferencias.Click += new System.EventHandler(this.btn_transferencias_Click);
             // 
             // btn_depositos
             // 

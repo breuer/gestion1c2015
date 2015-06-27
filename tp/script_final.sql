@@ -206,6 +206,7 @@ go
 --Tabla de Cuentas
 create table NEW_SOLUTION.Cuentas
 (
+	cta_id				bigint identity(1,1),
 	cta_num				numeric(18,0),
 	cta_cli_id			bigint,
 	cta_pais_apertura	int,
@@ -268,10 +269,8 @@ go
 create table NEW_SOLUTION.Transferencias
 (
 	transf_id					bigint identity(1,1),
-	transf_cta_origen			numeric(18,0),
-	transf_cta_pais_origen		int,
-	transf_cta_destino			numeric(18,0),
-	transf_cta_pais_destino		int,	
+	transf_cta_origen_id		bigint,
+	transf_cta_destino_id		bigint,	
 	transf_importe				numeric(18,2),
 	transf_fecha				datetime,
 	transf_cli_id				bigint,
@@ -385,7 +384,7 @@ create table NEW_SOLUTION.Usuarios_estado
 )
 go
 
-create table NEW_SOLUTION.Cuentas_estados
+create table NEW_SOLUTION.Cuentas_estado
 (
 	cta_estado_id		int identity(1,1),
 	cta_estado_descrip	varchar(200)
@@ -488,9 +487,10 @@ insert into NEW_SOLUTION.Clientes_estado(cli_estado_descrip)  values('Cliente Ac
 insert into NEW_SOLUTION.Clientes_estado(cli_estado_descrip)  values('Cliente Inhabilitado')
 insert into NEW_SOLUTION.Usuarios_estado(usu_estado_descrip)  values('Usuario activo')
 insert into NEW_SOLUTION.Usuarios_estado(usu_estado_descrip)  values('Usuario Inactivo')
-insert into NEW_SOLUTION.Cuentas_estados(cta_estado_descrip)  values('Cuenta Pendiente de Activacion')
-insert into NEW_SOLUTION.Cuentas_estados(cta_estado_descrip)  values('Cuenta Cerrada')
-insert into NEW_SOLUTION.Cuentas_estados(cta_estado_descrip)  values('Cuenta Inhabilitada')
+insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Activa')
+insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Pendiente de Activacion')
+insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Cerrada')
+insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Inhabilitada')
 insert into NEW_SOLUTION.Tarjetas_estado(tarj_estado_descrip) values('Cuenta Habilitada')
 insert into NEW_SOLUTION.Tarjetas_estado(tarj_estado_descrip) values('Tarjeta Vinculada')
 insert into NEW_SOLUTION.Tarjetas_estado(tarj_estado_descrip) values('Tarjeta Desvinculada')
@@ -632,16 +632,20 @@ go
 --Cargar tabla de transferencias.
 insert into NEW_SOLUTION.Transferencias
 (
-	transf_cta_origen,
-	transf_cta_destino,
+	transf_cta_origen_id,
+	transf_cta_destino_id,
 	transf_importe,
 	transf_fecha,
 	transf_cli_id,
 	transf_costo
 )
 select  distinct
-		a.Cuenta_Numero,
-		a.Cuenta_Dest_Numero,
+		c1.cta_id,
+		--a.Cuenta_Numero,
+		--a.Cuenta_Pais_Codigo,
+		c2.cta_id,
+		--a.Cuenta_Dest_Numero,
+		--a.Cuenta_Dest_Pais_Codigo,
 		a.Trans_Importe,
 		a.Transf_Fecha,		
 		(
@@ -650,7 +654,13 @@ select  distinct
 			convert(varchar,a.Cli_Nro_Doc)
 		),
 		0		
-from	gd_esquema.Maestra  as a 
+from	gd_esquema.Maestra     as a 
+left join NEW_SOLUTION.Cuentas as c1 on  c1.cta_num=a.Cuenta_Numero
+									 and c1.cta_pais_apertura=a.Cuenta_Pais_Codigo
+left join NEW_SOLUTION.Cuentas as c2 on  c2.cta_num=a.Cuenta_Dest_Numero
+									 and c2.cta_pais_apertura=a.Cuenta_Dest_Pais_Codigo
+where c1.cta_id is not null
+and	  c2.cta_id is not null 
 go
 
 --Cargar retiros.
@@ -766,6 +776,24 @@ begin
 		
 	return -1
 end
+go
+
+--Buscar el numero de cuenta en base a su numero.
+create procedure NEW_SOLUTION.sp_buscar_cta_num(@cuentaNum numeric(18,0))
+as
+	select distinct
+		   a.cta_id,
+		   a.cta_num,
+		   a.cta_cli_id,
+		   b.cli_apellido,
+		   b.cli_nombre,
+		   a.cta_pais_apertura,
+		   p.pais_descrip
+	from NEW_SOLUTION.Cuentas as a
+	inner join NEW_SOLUTION.Clientes as b on b.cli_id = a.cta_cli_id	
+	inner join NEW_SOLUTION.Paises   as p on p.pais_cod   = a.cta_pais_apertura
+	where a.cta_num   = @cuentaNum
+	and   a.cta_estado=1
 go
 
 --Realizar deposito en una cuenta.
@@ -928,33 +956,34 @@ as
 go
 
 -- Proceso de login
-create procedure NEW_SOLUTION.sp_usuario_login
+create procedure [NEW_SOLUTION].[sp_usuario_login]
 	@username varchar(255) = null,
 	@password varchar(255) = null,
 	@fecha date = null
 as
 begin
-	declare @resultado_login int = -1 -- login incorrecto
-	declare @id_usuario int = null
+	declare @resultado_login  int = -1 -- login incorrecto
+	declare @id_usuario       int = null
 	declare @password_usuario varchar(255)
 		
 	if exists (select * from NEW_SOLUTION.Usuarios u where u.usu_nombre = @username ) -- no existe usuario
 	begin
 		if exists (select * from NEW_SOLUTION.v_usuarios_inactivos u where u.usu_nombre = @username )
 			set @resultado_login = -2; -- usuario dado de baja
-		else begin
-			select 
-				@id_usuario = u.usu_id,
-				@password_usuario = u.usu_password
-			from 
-				NEW_SOLUTION.Usuarios u
-			where 
-				u.usu_nombre = @username  
+		else
+		begin
+			select 	@id_usuario		  = u.usu_id,
+					@password_usuario = u.usu_password
+			from 	NEW_SOLUTION.Usuarios u
+			where	u.usu_nombre = @username  
 
 			declare @resultado varchar(1) = 'n'
-			if (@password_usuario = @password) begin -- password correcto
+			
+			if (@password_usuario = @password)
+			begin
+				-- password correcto
 				set @resultado = 's'
-				set @resultado_login = 1
+				set @resultado_login = @id_usuario
 			end
 						
 			insert into 
@@ -963,8 +992,8 @@ begin
 				(@id_usuario, @fecha, @resultado)
 		end	
 	end	
-	--print @result		
-	return @resultado_login 
+
+	return @resultado_login 	
 end
 go
 
@@ -1031,7 +1060,7 @@ as
 go
 
 --Dice si ambas cuentas tiene el mismo cliente.
-alter function NEW_SOLUTION.cuenta_mismo_cliente(@cta1 numeric(18,0),@pais1 int,@cta2 numeric(18,0),@pais2 int)
+create function [NEW_SOLUTION].[cuenta_mismo_cliente](@cta1ID bigint,@cta2ID bigint)
 returns int
 as
 begin
@@ -1041,8 +1070,8 @@ begin
 	set @cli_1=0
 	set @cli_2=0
 	
-	select @cli_1 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_num=@cta1 and cta_pais_apertura = @pais1
-	select @cli_2 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_num=@cta2 and cta_pais_apertura = @pais2
+	select @cli_1 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @cta1ID
+	select @cli_2 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @cta2ID
 	
 	if (@cli_1=@cli_2)
 		return 1
@@ -1054,14 +1083,14 @@ end
 go
 
 --Hacer transferencia entre cuentas.
-alter procedure NEW_SOLUTION.cuenta_hacer_transferencia(@ctaOrigen numeric(18,0),@paisOrigen int,@ctaDestino numeric(18,0),@paisDestino int,@importe numeric(18,2),@fechaSys datetime,@cliId bigint)
+create procedure [NEW_SOLUTION].[sp_cuenta_hacer_transferencia](@ctaOrigenId bigint,@ctaDestinoId bigint,@importe numeric(18,2),@fechaSys datetime,@cliId bigint)
 as
 	--Revisar que la cuenta destino este activa.
 	declare @activDestino int
 	set		@activDestino = null
 	
 	--Cargo el estado de la cuenta destino.
-	select top 1 @activDestino = a.cta_estado from NEW_SOLUTION.Cuentas as a where a.cta_num=@ctaDestino and cta_pais_apertura = @paisDestino
+	select top 1 @activDestino = a.cta_estado from NEW_SOLUTION.Cuentas as a where a.cta_id=@ctaOrigenId
 	
 	--Si es nulo o el estado no es 1 que es activo, devuelvo -1, cta invalida.
 	if (@activDestino is not null)or(@activDestino <>1)
@@ -1071,18 +1100,18 @@ as
 		begin
 			--Revisar si el dinero de la cuenta origen alcanza para hacer la transferencia.
 			declare @montoOrigen numeric(18,2)
-			select  top 1 @montoOrigen = cta_saldo from NEW_SOLUTION.Cuentas where cta_num = @ctaOrigen and cta_pais_apertura = @paisOrigen
+			select  top 1 @montoOrigen = cta_saldo from NEW_SOLUTION.Cuentas where cta_id = @ctaOrigenId
 			
 			if (@montoOrigen-@importe>=0)
 			begin
 					--Si el cliente es el mismo.
-					if (NEW_SOLUTION.cuenta_mismo_cliente(@ctaOrigen,@paisOrigen,@ctaDestino,@paisDestino)=1)
+					if (NEW_SOLUTION.cuenta_mismo_cliente(@ctaOrigenId,@ctaDestinoId)=1)
 					begin
-						--select 'no hay costo de transferencia'
+						select * from NEW_SOLUTION.Transferencias
 
 						--Grabar transferencia.
-						insert into NEW_SOLUTION.Transferencias(transf_cta_origen,transf_cta_pais_origen,transf_cta_destino,transf_cta_pais_destino,transf_importe,transf_fecha,transf_cli_id,transf_costo)
-						values(@ctaOrigen,@paisOrigen,@ctaDestino,@paisDestino,@importe,@fechaSys,@cliId,0)
+						insert into NEW_SOLUTION.Transferencias(transf_cta_origen_id,transf_cta_destino_id,transf_importe,transf_fecha,transf_cli_id,transf_costo)
+						values(@ctaOrigenId,@ctaDestinoId,@importe,@fechaSys,@cliId,0)
 											
 						select 1						
 					end
@@ -1091,13 +1120,11 @@ as
 						--select 'se va cobrar impuesto'					
 						
 						--Grabar transferencia.
-						insert into NEW_SOLUTION.Transferencias(transf_cta_origen,transf_cta_pais_origen,transf_cta_destino,transf_cta_pais_destino,transf_importe,transf_fecha,transf_cli_id,transf_costo)
+						insert into NEW_SOLUTION.Transferencias(transf_cta_origen_id,transf_cta_destino_id,transf_importe,transf_fecha,transf_cli_id,transf_costo)
 						values
 						(
-							@ctaOrigen,
-							@paisOrigen,
-							@ctaDestino,							
-							@paisDestino,
+							@ctaOrigenId,
+							@ctaDestinoId,
 							@importe,
 							@fechaSys,
 							@cliId,
@@ -1105,7 +1132,7 @@ as
 									  isnull(b.ctacateg_costo,0)
 							from	  NEW_SOLUTION.Cuentas       as a
 							left join NEW_SOLUTION.Cuentas_categ as b on b.ctacateg_id = a.cta_tipo
-							where	  a.cta_num=@ctaOrigen)
+							where	  a.cta_id=@ctaOrigenId)
 						)		
 						
 						select 1
