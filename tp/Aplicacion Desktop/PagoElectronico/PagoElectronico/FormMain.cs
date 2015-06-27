@@ -17,6 +17,37 @@ namespace PagoElectronico
 {
     public partial class FormMain : Form
     {
+        private void desabilitarPaneles()
+        {
+            //Paneles.
+            this.admin_tab.Visible = false;
+            this.cliente_tab.Visible = false;
+
+            //Admin
+            this.btn_add_user.Visible = false;
+            this.btn_del_user.Visible = false;
+            this.btn_upd_user.Visible = false;
+            this.btn_add_rol.Visible = false;
+            this.btn_del_rol.Visible = false;
+            this.btn_upd_rol.Visible = false;
+            this.btn_add_cliente.Visible = false;
+            this.btn_del_cliente.Visible = false;
+            this.btn_upd_cliente.Visible = false;
+            this.btn_abm_cuentas.Visible = false;
+            this.btn_facturacion.Visible = false;
+            this.btn_estadisticas.Visible = false;
+
+            //Cliente
+            this.btn_tarj_vincular.Visible = false;
+            this.btn_retiros.Visible = false;
+            this.btn_tarj_desvincular.Visible = false;
+            this.btn_cli_abm_cuentas.Visible = false;
+            this.btn_transferencias.Visible = false;
+            this.btn_depositos.Visible = false;
+            this.btn_saldo.Visible = false;
+            this.btn_cli_facturacion.Visible = false;        
+        }
+
         private void habilitarPaneles()
         {
             if (DataSession.Usuario == null)
@@ -26,6 +57,9 @@ namespace PagoElectronico
                 this.btLogin.Visible            = true;
                 this.btLogout.Visible           = false;
                 this.btChangePassword.Visible   = false;
+
+                //Oculto todo.
+                this.desabilitarPaneles();
             }
             else
             {
@@ -34,31 +68,9 @@ namespace PagoElectronico
                 this.btLogin.Visible           = false;
                 this.btLogout.Visible          = true;
                 this.btChangePassword.Visible  = true;
+
                 //Oculto todo.
-
-                //Admin
-                this.btn_add_user.Visible=false;
-                this.btn_del_user.Visible=false;
-                this.btn_upd_user.Visible=false;
-                this.btn_add_rol.Visible=false;
-                this.btn_del_rol.Visible=false;
-                this.btn_upd_rol.Visible=false;
-                this.btn_add_cliente.Visible=false;
-                this.btn_del_cliente.Visible=false;
-                this.btn_upd_cliente.Visible=false;
-                this.btn_abm_cuentas.Visible=false;
-                this.btn_facturacion.Visible=false;
-                this.btn_estadisticas.Visible=false;
-
-                //Cliente
-                this.btn_tarj_vincular.Visible=false;
-                this.btn_retiros.Visible = false;
-                this.btn_tarj_desvincular.Visible=false;
-                this.btn_cli_abm_cuentas.Visible=false;
-                this.btn_transferencias.Visible=false;
-                this.btn_depositos.Visible=false;
-                this.btn_saldo.Visible=false;
-                this.btn_cli_facturacion.Visible=false;
+                this.desabilitarPaneles();
                 
                 //Detecta si es usuario o cliente.
                 if (DataSession.Usuario.RolSeleccionado.Id == 2)
