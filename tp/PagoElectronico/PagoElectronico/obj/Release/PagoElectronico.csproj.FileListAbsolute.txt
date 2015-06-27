@@ -1,0 +1,86 @@
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\Worspace\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.FormMain.resources
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormLogin.resources
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe.config
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe.config
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.FormMain.resources
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormLogin.resources
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormChooseRol.resources
+C:\Users\leo\Gestion de datos\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormCliente.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe.config
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormCliente.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.FormMain.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormChooseRol.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormLogin.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.FormRol.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.FormSearchRol.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_de_Usuario.FormUsuario.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormSearchCliente.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_de_Usuario.FormSearchUsuario.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormChangePassword.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\scripts\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Listados.FormListadoEstadistico.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\bin\Release\PagoElectronico.exe.config
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\bin\Release\PagoElectronico.pdb
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormCliente.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormSearchCliente.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.ABM_de_Usuario.FormSearchUsuario.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.ABM_de_Usuario.FormUsuario.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.FormRol.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.FormSearchRol.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.FormMain.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.Listados.FormListadoEstadistico.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.Login.FormChangePassword.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.Login.FormChooseRol.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.Login.FormLogin.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\dcipolat\Desktop\damian\UTN\Tp\v1_2\App\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe.config
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.exe
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.pdb
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormCliente.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Cliente.FormSearchCliente.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_de_Usuario.FormSearchUsuario.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_de_Usuario.FormUsuario.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.FormRol.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.ABM_Rol.FormSearchRol.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.FormMain.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Listados.FormListadoEstadistico.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormChangePassword.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormChooseRol.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Login.FormLogin.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.Properties.Resources.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Release\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.exe
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\bin\Release\PagoElectronico.pdb
