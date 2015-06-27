@@ -84,3 +84,4 @@ C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoE
 C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
 C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.exe
 C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.pdb
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tp\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Transferencias.FormTransfer.resources
