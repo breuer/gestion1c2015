@@ -272,6 +272,7 @@ create table NEW_SOLUTION.Transferencias
 	transf_cta_origen_id		bigint,
 	transf_cta_destino_id		bigint,	
 	transf_importe				numeric(18,2),
+	transf_moneda				int,
 	transf_fecha				datetime,
 	transf_cli_id				bigint,
 	transf_costo				numeric(18,2),
@@ -779,7 +780,7 @@ end
 go
 
 --Buscar el numero de cuenta en base a su numero.
-create procedure NEW_SOLUTION.sp_buscar_cta_num(@cuentaNum numeric(18,0))
+create procedure NEW_SOLUTION.sp_buscar_cta_num(@cuentaNum bigint)
 as
 	select distinct
 		   a.cta_id,
@@ -794,6 +795,22 @@ as
 	inner join NEW_SOLUTION.Paises   as p on p.pais_cod   = a.cta_pais_apertura
 	where a.cta_num   = @cuentaNum
 	and   a.cta_estado=1
+go
+
+--Busca las cuentas en base a un id cliente.
+create procedure NEW_SOLUTION.sp_buscar_cta_idcli(@cli_id bigint)
+as
+	select distinct
+		   a.cta_id,
+		   a.cta_num,
+		   a.cta_cli_id,
+		   b.pais_descrip
+	from NEW_SOLUTION.Cuentas as a
+	inner join NEW_SOLUTION.Paises   as b on b.pais_cod=a.cta_pais_apertura
+	inner join NEW_SOLUTION.Clientes as c on c.cli_id     = a.cta_cli_id	
+	inner join NEW_SOLUTION.Usuarios as d on d.usu_cli_id = c.cli_id		
+	where d.usu_id =@cli_id 
+	and   a.cta_estado = 1
 go
 
 --Realizar deposito en una cuenta.
@@ -1083,7 +1100,7 @@ end
 go
 
 --Hacer transferencia entre cuentas.
-create procedure [NEW_SOLUTION].[sp_cuenta_hacer_transferencia](@ctaOrigenId bigint,@ctaDestinoId bigint,@importe numeric(18,2),@fechaSys datetime,@cliId bigint)
+create procedure [NEW_SOLUTION].[sp_cuenta_hacer_transferencia](@ctaOrigenId bigint,@ctaDestinoId bigint,@importe numeric(18,2),@idmoneda int,@fechaSys datetime)
 as
 	--Revisar que la cuenta destino este activa.
 	declare @activDestino int
@@ -1104,28 +1121,30 @@ as
 			
 			if (@montoOrigen-@importe>=0)
 			begin
+					--Obtengo el id cliente.
+					declare @cliId bigint
+					select top 1 @cliId= cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @ctaOrigenId
+			
 					--Si el cliente es el mismo.
 					if (NEW_SOLUTION.cuenta_mismo_cliente(@ctaOrigenId,@ctaDestinoId)=1)
 					begin
-						select * from NEW_SOLUTION.Transferencias
-
 						--Grabar transferencia.
-						insert into NEW_SOLUTION.Transferencias(transf_cta_origen_id,transf_cta_destino_id,transf_importe,transf_fecha,transf_cli_id,transf_costo)
-						values(@ctaOrigenId,@ctaDestinoId,@importe,@fechaSys,@cliId,0)
+						insert into NEW_SOLUTION.Transferencias(transf_cta_origen_id,transf_cta_destino_id,transf_importe,transf_moneda,transf_fecha,transf_cli_id,transf_costo)
+						values(@ctaOrigenId,@ctaDestinoId,@importe,@idmoneda,@fechaSys,@cliId,0)
 											
-						select 1						
+						return 1						
 					end
 					else
 					begin
-						--select 'se va cobrar impuesto'					
-						
+					
 						--Grabar transferencia.
-						insert into NEW_SOLUTION.Transferencias(transf_cta_origen_id,transf_cta_destino_id,transf_importe,transf_fecha,transf_cli_id,transf_costo)
+						insert into NEW_SOLUTION.Transferencias(transf_cta_origen_id,transf_cta_destino_id,transf_importe,transf_moneda,transf_fecha,transf_cli_id,transf_costo)
 						values
 						(
 							@ctaOrigenId,
 							@ctaDestinoId,
 							@importe,
+							@idmoneda,						
 							@fechaSys,
 							@cliId,
 							(select   top 1
@@ -1135,21 +1154,21 @@ as
 							where	  a.cta_id=@ctaOrigenId)
 						)		
 						
-						select 1
+						return 1
 					end				
 			end			
 			else
 				--No hay dinero suficiente para hacer la transferencia.
-				select -3
+				return -3
 		end
 		else	
 			--Deber ser un importe mayor que cero.	
-			select -2
+			return -2
 	end
 	else
 	begin
 		--Cuenta invalida
-		select -1
+		return -1
 	end
 go
 	

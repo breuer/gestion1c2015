@@ -20,5 +20,20 @@ namespace PagoElectronico.Model
 
             return data;         
         }
+
+        public DataTable buscar_cuentas_usuario(Usuario user)
+        {
+            TransferenciaDAO dao = new TransferenciaDAO();
+            DataTable data = dao.buscar_cuentas_usuario(user);
+
+            return data;
+        }
+
+        public int hacer_transferencia(String ctaOrigen, String ctaDestino, float importe)
+        {
+            TransferenciaDAO dao = new TransferenciaDAO();
+            int resu = dao.hacer_transferencia(ctaOrigen, ctaDestino, importe);
+            return resu;        
+        }
     }
 }

@@ -237,7 +237,7 @@ namespace PagoElectronico
 
         private void btn_transferencias_Click(object sender, EventArgs e)
         {
-            FormTransfer frmTransf = new FormTransfer();
+            FormTransfer frmTransf = new FormTransfer(DataSession.Usuario);
             frmTransf.Show();
         }
     }
