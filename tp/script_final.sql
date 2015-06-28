@@ -179,8 +179,8 @@ go
 create table NEW_SOLUTION.Depositos
 (
 	depo_id				bigint identity(1,1),
-	depo_cuenta			numeric(18,0),
-	depo_cuenta_pais	int,
+	depo_cta_id			bigint,
+	depo_cli_id			bigint,
 	depo_moneda			int,
 	depo_tarj_id		bigint,
 	depo_fecha			datetime,
@@ -192,7 +192,7 @@ go
 create index ix_1_depo_id  on NEW_SOLUTION.Depositos(depo_id)
 go
 
-create index ix_2_depo_cta on NEW_SOLUTION.Depositos(depo_cuenta)
+create index ix_2_depo_cta on NEW_SOLUTION.Depositos(depo_cta_id)
 go
 
 --Tabla de  estados
@@ -491,7 +491,6 @@ insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Acti
 insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Pendiente de Activacion')
 insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Cerrada')
 insert into NEW_SOLUTION.Cuentas_estado(cta_estado_descrip)  values('Cuenta Inhabilitada')
-insert into NEW_SOLUTION.Tarjetas_estado(tarj_estado_descrip) values('Cuenta Habilitada')
 insert into NEW_SOLUTION.Tarjetas_estado(tarj_estado_descrip) values('Tarjeta Vinculada')
 insert into NEW_SOLUTION.Tarjetas_estado(tarj_estado_descrip) values('Tarjeta Desvinculada')
 go
@@ -769,7 +768,14 @@ create function NEW_SOLUTION.tarjeta_cliente_valida(@tarjId bigint,@cliId bigint
 returns int
 as
 begin
-	if exists(select a.* from  NEW_SOLUTION.Tarjetas as a where a.tarj_numero = @tarjId and a.tarj_cli_id = @cliId and a.tarj_estado=1)
+	if exists(
+				select	    a.tarj_id
+				from        NEW_SOLUTION.Tarjetas as a
+				inner join  NEW_SOLUTION.Clientes as c on c.cli_id=a.tarj_cli_id
+				where  a.tarj_estado=1
+				and    a.tarj_id=100
+				and    c.cli_id='1021000243505178'
+			)
 		return 1
 	else 
 		return 0
@@ -829,38 +835,53 @@ as
 	and   a.cta_saldo>0
 go
 
+--Devuelve las tarjetas que estan asociadas a un cliente.
+create procedure NEW_SOLUTION.sp_traer_tarjetas_user_id(@userID bigint,@fechaSYS datetime)
+as
+	select a.tarj_id,
+		   a.tarj_numero,
+		   a.tarj_fecemision,
+		   a.tarj_fecvencimiento,
+		   a.tarj_codseguridad,
+		   a.tarj_emisor,
+		   t.tarjemis_nombre,
+		   a.tarj_estado,
+		   a.tarj_cli_id
+	from        NEW_SOLUTION.Tarjetas as a
+	inner join  NEW_SOLUTION.Tarjetas_emisores as t on t.tarjemis_id=a.tarj_emisor
+	inner join  NEW_SOLUTION.Clientes as c on c.cli_id=a.tarj_cli_id
+	inner join  NEW_SOLUTION.Usuarios as u on u.usu_cli_id=c.cli_id
+	where  u.usu_id=@userID
+	and    a.tarj_estado=1
+	and    a.tarj_fecvencimiento > @fechaSYS
+go
+
 --Realizar deposito en una cuenta.
-create procedure NEW_SOLUTION.cuenta_depositar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@moneda int,@cliID bigint,@tarjId bigint,@fechaSys datetime)
+create procedure NEW_SOLUTION.cuenta_depositar(@ctaID bigint,@importe numeric(18,2),@moneda int,@tarjId bigint,@fechaSys datetime)
 as
 	--Si el importe es aceptado
 	if (@importe>1)
 	begin
-		
-			--Dice si la cta pertenece al cliente
-			if (NEW_SOLUTION.cuenta_pertenece_cliente(@ctaNum,@idpais,@cliID)=1)
-			begin
-				--Revisar si la tarjeta es valida
-				if (NEW_SOLUTION.tarjeta_cliente_valida(@tarjId,@cliID)=1)
-				begin
-					--Registro el deposito.
-					insert into NEW_SOLUTION.Depositos(depo_cuenta,depo_cuenta_pais,depo_moneda,depo_tarj_id,depo_fecha,depo_importe)
-					values(@ctaNum,@idpais,@moneda,@tarjId,@fechaSys,@importe)
-					
-					--Actualizo el valor de la cuenta
-					update NEW_SOLUTION.Cuentas set cta_saldo=cta_saldo+@importe
-					where cta_cli_id=@cliID
-					and   cta_num   =@ctaNum
-					and   cta_pais_apertura =@idpais
-					
-					--Muestro el ok
-					select 1
-				end
-				else
-					return -3
-			end
-			else
-				--La cuenta no pertenece al cliente.
-				return -2
+		declare @cliID bigint
+		select top 1 @cliID = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id=@ctaID
+	
+		--Revisar si la tarjeta es valida
+		if (NEW_SOLUTION.tarjeta_cliente_valida(@tarjId,@cliID)=1)
+		begin
+			--Registro el deposito.
+			insert into NEW_SOLUTION.Depositos(depo_cta_id,depo_cli_id,depo_moneda,depo_tarj_id,depo_fecha,depo_importe)
+			values(@ctaID,@cliID,@moneda,@tarjId,@fechaSYS,@importe)
+			
+			--Actualizo el valor de la cuenta
+			update NEW_SOLUTION.Cuentas set cta_saldo=cta_saldo+@importe
+			where cta_id = @ctaID
+			
+			--Muestro el ok
+			return 1
+		end
+		else
+			--Tarjeta invalida
+			return -2
 	end
 	else
 		--Valor no permitido

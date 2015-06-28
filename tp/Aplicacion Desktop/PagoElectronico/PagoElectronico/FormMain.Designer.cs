@@ -310,6 +310,7 @@
             this.btn_depositos.TabIndex = 5;
             this.btn_depositos.Text = "Depositos";
             this.btn_depositos.UseVisualStyleBackColor = true;
+            this.btn_depositos.Click += new System.EventHandler(this.btn_depositos_Click);
             // 
             // groupBox8
             // 

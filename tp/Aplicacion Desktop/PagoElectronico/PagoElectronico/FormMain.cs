@@ -14,6 +14,7 @@ using PagoElectronico.ABM_Cliente;
 using PagoElectronico.Listados;
 using PagoElectronico.Transferencias;
 using PagoElectronico.Retiros;
+using PagoElectronico.Depositos;
 
 namespace PagoElectronico
 {
@@ -246,6 +247,12 @@ namespace PagoElectronico
         {
             FormRetiros frmRetiros = new FormRetiros(DataSession.Usuario);
             frmRetiros.Show();
+        }
+
+        private void btn_depositos_Click(object sender, EventArgs e)
+        {
+            FormDepositos frmDepositos = new FormDepositos(DataSession.Usuario);
+            frmDepositos.Show();
         }
     }
 }

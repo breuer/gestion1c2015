@@ -57,6 +57,7 @@ namespace PagoElectronico.Transferencias
             else
             {
                 MessageBox.Show("No hay ninguna cuenta de origen cargada, no se podran hacer transferencias.");
+                this.Close();
             }
         }
 
@@ -145,6 +146,7 @@ namespace PagoElectronico.Transferencias
             else
             {
                 MessageBox.Show("No hay cuentas cargadas..");
+                this.Close();
             }
         }
 

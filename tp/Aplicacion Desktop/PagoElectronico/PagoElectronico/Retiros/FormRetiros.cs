@@ -44,6 +44,7 @@ namespace PagoElectronico.Retiros
             else
             {
                 MessageBox.Show("No hay ninguna cuenta de origen cargada, no se podran hacer transferencias.");
+                this.Close();
             }
         }
 
@@ -66,6 +67,7 @@ namespace PagoElectronico.Retiros
             else
             {
                 MessageBox.Show("No hay ningun banco cargado, no se podra realizar un retiro de dinero.");
+                this.Close();
             }        
         }
 
