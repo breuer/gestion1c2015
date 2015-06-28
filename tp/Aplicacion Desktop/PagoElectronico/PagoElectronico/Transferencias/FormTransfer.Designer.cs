@@ -42,16 +42,16 @@
             this.panel_transf = new System.Windows.Forms.Panel();
             this.panel_importe = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label_cta_nomb = new System.Windows.Forms.Label();
-            this.label_cta_num = new System.Windows.Forms.Label();
-            this.label_cta_pais = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txt_importe = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txt_importe = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label_cta_pais = new System.Windows.Forms.Label();
+            this.label_cta_num = new System.Windows.Forms.Label();
+            this.label_cta_nomb = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla_cuentas)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -207,65 +207,36 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Transferir";
             // 
-            // label_cta_nomb
+            // label9
             // 
-            this.label_cta_nomb.AutoSize = true;
-            this.label_cta_nomb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_cta_nomb.Location = new System.Drawing.Point(20, 80);
-            this.label_cta_nomb.Name = "label_cta_nomb";
-            this.label_cta_nomb.Size = new System.Drawing.Size(144, 24);
-            this.label_cta_nomb.TabIndex = 0;
-            this.label_cta_nomb.Text = "Indeterminado";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Olive;
+            this.label9.Location = new System.Drawing.Point(21, 339);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 24);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "U$$ Dolares";
             // 
-            // label_cta_num
+            // label8
             // 
-            this.label_cta_num.AutoSize = true;
-            this.label_cta_num.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_cta_num.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label_cta_num.Location = new System.Drawing.Point(20, 116);
-            this.label_cta_num.Name = "label_cta_num";
-            this.label_cta_num.Size = new System.Drawing.Size(274, 24);
-            this.label_cta_num.TabIndex = 1;
-            this.label_cta_num.Text = "000000000000000000000000";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(21, 315);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 18);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Moneda:";
             // 
-            // label_cta_pais
+            // button3
             // 
-            this.label_cta_pais.AutoSize = true;
-            this.label_cta_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_cta_pais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label_cta_pais.Location = new System.Drawing.Point(20, 150);
-            this.label_cta_pais.Name = "label_cta_pais";
-            this.label_cta_pais.Size = new System.Drawing.Size(274, 24);
-            this.label_cta_pais.TabIndex = 2;
-            this.label_cta_pais.Text = "000000000000000000000000";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(18, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(222, 37);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Datos destino:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(21, 197);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 24);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "IMPORTE";
-            // 
-            // txt_importe
-            // 
-            this.txt_importe.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_importe.Location = new System.Drawing.Point(24, 266);
-            this.txt_importe.Name = "txt_importe";
-            this.txt_importe.Size = new System.Drawing.Size(561, 31);
-            this.txt_importe.TabIndex = 5;
+            this.button3.Location = new System.Drawing.Point(24, 378);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(117, 41);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Transferir";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label7
             // 
@@ -278,36 +249,65 @@
             this.label7.Text = "Escriba el importe a transferir, el sistema verificara si posee saldo disponible " +
                 "para realizar la transferencia";
             // 
-            // button3
+            // txt_importe
             // 
-            this.button3.Location = new System.Drawing.Point(24, 378);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 41);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Transferir";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.txt_importe.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_importe.Location = new System.Drawing.Point(24, 266);
+            this.txt_importe.Name = "txt_importe";
+            this.txt_importe.Size = new System.Drawing.Size(561, 31);
+            this.txt_importe.TabIndex = 5;
             // 
-            // label8
+            // label6
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(21, 315);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 18);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Moneda:";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(21, 197);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 24);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "IMPORTE";
             // 
-            // label9
+            // label5
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Olive;
-            this.label9.Location = new System.Drawing.Point(21, 339);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 24);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "U$$ Dolares";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(18, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(222, 37);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Datos destino:";
+            // 
+            // label_cta_pais
+            // 
+            this.label_cta_pais.AutoSize = true;
+            this.label_cta_pais.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_cta_pais.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.label_cta_pais.Location = new System.Drawing.Point(20, 150);
+            this.label_cta_pais.Name = "label_cta_pais";
+            this.label_cta_pais.Size = new System.Drawing.Size(274, 24);
+            this.label_cta_pais.TabIndex = 2;
+            this.label_cta_pais.Text = "000000000000000000000000";
+            // 
+            // label_cta_num
+            // 
+            this.label_cta_num.AutoSize = true;
+            this.label_cta_num.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_cta_num.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label_cta_num.Location = new System.Drawing.Point(20, 116);
+            this.label_cta_num.Name = "label_cta_num";
+            this.label_cta_num.Size = new System.Drawing.Size(274, 24);
+            this.label_cta_num.TabIndex = 1;
+            this.label_cta_num.Text = "000000000000000000000000";
+            // 
+            // label_cta_nomb
+            // 
+            this.label_cta_nomb.AutoSize = true;
+            this.label_cta_nomb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_cta_nomb.Location = new System.Drawing.Point(20, 80);
+            this.label_cta_nomb.Name = "label_cta_nomb";
+            this.label_cta_nomb.Size = new System.Drawing.Size(144, 24);
+            this.label_cta_nomb.TabIndex = 0;
+            this.label_cta_nomb.Text = "Indeterminado";
             // 
             // FormTransfer
             // 
@@ -316,6 +316,7 @@
             this.ClientSize = new System.Drawing.Size(792, 922);
             this.Controls.Add(this.panel_importe);
             this.Controls.Add(this.panel_transf);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormTransfer";

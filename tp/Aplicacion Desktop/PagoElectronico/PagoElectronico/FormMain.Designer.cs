@@ -263,6 +263,7 @@
             this.btn_retiros.TabIndex = 7;
             this.btn_retiros.Text = "Retiros";
             this.btn_retiros.UseVisualStyleBackColor = true;
+            this.btn_retiros.Click += new System.EventHandler(this.btn_retiros_Click);
             // 
             // btn_cli_facturacion
             // 
@@ -693,6 +694,7 @@
             this.ClientSize = new System.Drawing.Size(855, 637);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMain";

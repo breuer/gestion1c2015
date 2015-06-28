@@ -124,10 +124,10 @@ namespace PagoElectronico.Transferencias
         private void button2_Click(object sender, EventArgs e)
         {
             //Si hay cuentas destino cargadas.
-            if (grilla_cuentas.Rows.Count>0)
+            if (grilla_cuentas.Rows.Count>=0)
             {
                 //Si hay items cargados en el combo.
-                if (combo_ctas_activas.Items.Count > 0)
+                if (combo_ctas_activas.Items.Count >= 0)
                 {
                     //Indice elegido.
                     int ix_grilla = grilla_cuentas.CurrentCell.RowIndex;

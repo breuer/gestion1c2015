@@ -13,6 +13,7 @@ using PagoElectronico.ABM_de_Usuario;
 using PagoElectronico.ABM_Cliente;
 using PagoElectronico.Listados;
 using PagoElectronico.Transferencias;
+using PagoElectronico.Retiros;
 
 namespace PagoElectronico
 {
@@ -239,6 +240,12 @@ namespace PagoElectronico
         {
             FormTransfer frmTransf = new FormTransfer(DataSession.Usuario);
             frmTransf.Show();
+        }
+
+        private void btn_retiros_Click(object sender, EventArgs e)
+        {
+            FormRetiros frmRetiros = new FormRetiros(DataSession.Usuario);
+            frmRetiros.Show();
         }
     }
 }

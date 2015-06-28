@@ -238,8 +238,7 @@ create table NEW_SOLUTION.Retiros
 	ret_fecha			datetime,
 	ret_cli_id			bigint,	
 	ret_num_cheque		numeric(18,0),
-	ret_cta_num			numeric(18,0),
-	ret_cta_num_pais	int
+	ret_cta_id			bigint
 )
 go
 
@@ -813,6 +812,23 @@ as
 	and   a.cta_estado = 1
 go
 
+--Busca las cuentas en base a un id cliente, PERO que el saldo sea mayor a CERO.
+create procedure NEW_SOLUTION.sp_buscar_cta_idcli_disponibles(@cli_id bigint)
+as
+	select distinct
+		   a.cta_id,
+		   a.cta_num,
+		   a.cta_cli_id,
+		   b.pais_descrip
+	from NEW_SOLUTION.Cuentas as a
+	inner join NEW_SOLUTION.Paises   as b on b.pais_cod=a.cta_pais_apertura
+	inner join NEW_SOLUTION.Clientes as c on c.cli_id     = a.cta_cli_id	
+	inner join NEW_SOLUTION.Usuarios as d on d.usu_cli_id = c.cli_id		
+	where d.usu_id =@cli_id 
+	and   a.cta_estado = 1
+	and   a.cta_saldo>0
+go
+
 --Realizar deposito en una cuenta.
 create procedure NEW_SOLUTION.cuenta_depositar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@moneda int,@cliID bigint,@tarjId bigint,@fechaSys datetime)
 as
@@ -840,15 +856,15 @@ as
 					select 1
 				end
 				else
-					select -3
+					return -3
 			end
 			else
 				--La cuenta no pertenece al cliente.
-				select -2
+				return -2
 	end
 	else
 		--Valor no permitido
-		select -1
+		return -1
 go
 
 -- obtiene clientes por campos dinamicos
@@ -1015,11 +1031,11 @@ end
 go
 
 --Dice si una cuenta esta activa.
-create function NEW_SOLUTION.cuenta_activa(@ctaNum numeric(18,0),@idpais int)
+create function NEW_SOLUTION.cuenta_activa(@ctaID bigint)
 returns int
 as
 begin
-	if exists(select * from NEW_SOLUTION.Cuentas where cta_num=@ctaNum and cta_estado=1 and cta_pais_apertura = @idpais)
+	if exists(select * from NEW_SOLUTION.Cuentas where cta_id=@ctaID)
 		return 1
 	else 
 		return 0
@@ -1028,15 +1044,41 @@ begin
 end
 go
 
+--Valida el idusuario con su propio numero de documento, que esta fijado como cliente.
+create procedure NEW_SOLUTION.sp_valida_id_dni(@usu_id bigint,@ndoc numeric(18,0))
+as
+begin
+
+	if exists
+	(
+		select * from NEW_SOLUTION.Clientes as a
+		inner join NEW_SOLUTION.Usuarios as u on u.usu_cli_id=a.cli_id
+		where u.usu_id   = @usu_id
+		and   a.cli_ndoc = @ndoc
+	)
+		return 1
+	else
+		return 0
+
+	return -1
+end
+go
+
+--Listar los bancos
+create procedure NEW_SOLUTION.sp_traer_bancos
+as
+	select bco_cod,bco_nombre,bco_direccion from NEW_SOLUTION.Bancos
+go
+
 --Retirar dinero
-create procedure NEW_SOLUTION.cuenta_retirar(@ctaNum numeric(18,0),@idpais int,@importe numeric(18,2),@codBco numeric(18,0),@cliId bigint,@fechaSys datetime)
+create procedure NEW_SOLUTION.sp_cuenta_retirar(@ctaID bigint,@importe numeric(18,2),@codBco numeric(18,0),@fechaSys datetime)
 as
 	--Revisar que la cuenta se encuentra activa.
-	if (NEW_SOLUTION.cuenta_activa(@ctaNum,@idpais)=1)
+	if (NEW_SOLUTION.cuenta_activa(@ctaID)=1)
 	begin
 		--Obtengo el importe
 		declare      @saldoCta numeric(18,2)		
-		select top 1 @saldoCta = cta_saldo from NEW_SOLUTION.Cuentas where cta_num=@ctaNum and cta_pais_apertura = @idpais
+		select top 1 @saldoCta = cta_saldo from NEW_SOLUTION.Cuentas where cta_id=@ctaID
 		
 		--Si tengo saldo.
 		if (@saldoCta>0)
@@ -1046,22 +1088,25 @@ as
 			begin
 				--Realizo la extraccion.
 				update NEW_SOLUTION.Cuentas set cta_saldo = cta_saldo-@importe
-				where cta_num			= @ctaNum
-				and   cta_pais_apertura = @idpais
+				where cta_id = @ctaID
 				
 				--Obtengo el prox. num de cheque.
 				declare @chqNum numeric(18,0)
 				select  @chqNum = MAX(chq_num)+1 from NEW_SOLUTION.Cheques
+
+				--Obtengo el cli Id.
+				declare @cliId bigint
+				select  top 1 @cliId = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id=@ctaID
 
 				--Registro el cheque
 				insert into NEW_SOLUTION.Cheques(chq_num,chq_importe,chq_cli_id,chq_cod_bco,chq_fecha)
 				values(@chqNum,@importe,@cliId,@codBco,@fechaSys)
 				
 				--Registro la extraccion.
-				insert into NEW_SOLUTION.Retiros(ret_fecha,ret_cli_id,ret_num_cheque,ret_cta_num,ret_cta_num_pais)
-				values(@fechaSys,@cliId,@chqNum,@ctaNum,@idpais)
-				
-				select 1
+				insert into NEW_SOLUTION.Retiros(ret_fecha,ret_cli_id,ret_num_cheque,ret_cta_id)
+				values(@fechaSys,@cliId,@chqNum,@ctaID)
+
+				return 1
 			end	
 			else
 				--No alcanza el dinero para hacer la extraccion.
