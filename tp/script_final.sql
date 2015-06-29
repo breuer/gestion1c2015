@@ -818,6 +818,63 @@ as
 	and   a.cta_estado = 1
 go
 
+--Obtiene el saldo actual de la cuenta.
+create procedure NEW_SOLUTION.consultar_saldo_cta_id(@ctaID bigint)
+as
+begin
+	declare @saldo numeric(18,2)
+	select top 1 @saldo = cta_saldo from NEW_SOLUTION.Cuentas where cta_id=@ctaID
+	
+	select @saldo as saldo
+end
+go
+
+--Consulta ultimos movimientos.
+create procedure NEW_SOLUTION.sp_cta_movimientos(@ctaID bigint)
+as
+begin
+	create table #tmp
+	(
+		tipo    varchar(100),
+		importe numeric(18,2),
+		fecha	datetime
+	)
+	
+	insert into #tmp
+	select  top 5
+			'Transferencia',
+			t.transf_importe,
+			t.transf_fecha
+	from    NEW_SOLUTION.Transferencias as t
+	where t.transf_cta_destino_id=@ctaID
+	order by t.transf_id desc
+	
+	insert into #tmp
+	select  top 5
+		   'Deposito',
+			d.depo_importe,
+			d.depo_fecha
+	from	NEW_SOLUTION.Depositos  as d
+	where   d.depo_cta_id=@ctaID
+	order by d.depo_id desc
+	
+	insert into #tmp
+	select  top 5
+			'Retiro',
+			chq.chq_importe,
+			chq.chq_fecha
+	from       NEW_SOLUTION.Retiros as r
+	inner join NEW_SOLUTION.Cheques as chq on chq.chq_num= r.ret_num_cheque
+	where	   r.ret_cta_id=@ctaID
+	order by   r.ret_id desc;
+	
+	select tipo,importe,fecha
+	from   #tmp
+	
+	drop table #tmp
+end
+go
+
 --Busca las cuentas en base a un id cliente, PERO que el saldo sea mayor a CERO.
 create procedure NEW_SOLUTION.sp_buscar_cta_idcli_disponibles(@cli_id bigint)
 as

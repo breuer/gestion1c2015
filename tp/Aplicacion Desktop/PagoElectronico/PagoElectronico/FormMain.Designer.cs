@@ -86,6 +86,7 @@
             this.button25 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -282,6 +283,7 @@
             this.btn_saldo.TabIndex = 6;
             this.btn_saldo.Text = "Saldo";
             this.btn_saldo.UseVisualStyleBackColor = true;
+            this.btn_saldo.Click += new System.EventHandler(this.btn_saldo_Click);
             // 
             // btn_cli_abm_cuentas
             // 
@@ -355,6 +357,7 @@
             // 
             this.admin_tab.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.admin_tab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.admin_tab.Controls.Add(this.button1);
             this.admin_tab.Controls.Add(this.label4);
             this.admin_tab.Controls.Add(this.groupBox4);
             this.admin_tab.Controls.Add(this.groupBox3);
@@ -688,6 +691,16 @@
             this.button27.Text = "Actualizar usuario";
             this.button27.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(712, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -782,5 +795,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button btn_tarj_vincular;
         private System.Windows.Forms.Button btn_tarj_desvincular;
+        private System.Windows.Forms.Button button1;
     }
 }

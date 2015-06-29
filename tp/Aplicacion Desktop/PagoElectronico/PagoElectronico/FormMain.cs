@@ -15,6 +15,7 @@ using PagoElectronico.Listados;
 using PagoElectronico.Transferencias;
 using PagoElectronico.Retiros;
 using PagoElectronico.Depositos;
+using PagoElectronico.Saldos;
 
 namespace PagoElectronico
 {
@@ -253,6 +254,18 @@ namespace PagoElectronico
         {
             FormDepositos frmDepositos = new FormDepositos(DataSession.Usuario);
             frmDepositos.Show();
+        }
+
+        private void btn_saldo_Click(object sender, EventArgs e)
+        {
+            FormSaldo_cliente frmsaldo = new FormSaldo_cliente(DataSession.Usuario);
+            frmsaldo.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormSaldo_admin frmsaldoAdm = new FormSaldo_admin(DataSession.Usuario);
+            frmsaldoAdm.Show();
         }
     }
 }

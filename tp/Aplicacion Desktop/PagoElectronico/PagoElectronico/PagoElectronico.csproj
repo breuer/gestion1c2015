@@ -92,6 +92,7 @@
     <Compile Include="DAO\Repository.cs" />
     <Compile Include="DAO\RetiroDAO.cs" />
     <Compile Include="DAO\RolDAO.cs" />
+    <Compile Include="DAO\SaldoDAO.cs" />
     <Compile Include="DAO\TransferenciaDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="DataSession.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Model\Funcionalidad.cs" />
     <Compile Include="Model\Listado.cs" />
     <Compile Include="Model\Retiro.cs" />
+    <Compile Include="Model\Saldo.cs" />
     <Compile Include="Model\TipoIdentificacion.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Rol.cs" />
@@ -193,6 +195,12 @@
     <EmbeddedResource Include="Retiros\FormRetiros.resx">
       <DependentUpon>FormRetiros.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Saldos\FormSaldo_admin.resx">
+      <DependentUpon>FormSaldo_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Saldos\FormSaldo_cliente.resx">
+      <DependentUpon>FormSaldo_cliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transferencias\FormTransfer.resx">
       <DependentUpon>FormTransfer.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,6 +223,18 @@
     </Compile>
     <Compile Include="Retiros\Form2.Designer.cs">
       <DependentUpon>FormRetiros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_admin.Designer.cs">
+      <DependentUpon>FormSaldo_admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_cliente.Designer.cs">
+      <DependentUpon>FormSaldo_cliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Transferencias\FormTransfer.cs">
       <SubType>Form</SubType>
