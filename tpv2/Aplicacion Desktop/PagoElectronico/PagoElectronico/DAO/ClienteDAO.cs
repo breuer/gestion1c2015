@@ -57,17 +57,10 @@ namespace PagoElectronico.DAO
                 cliente.Identificacion = int.Parse(row["cli_ndoc"].ToString());
                 cliente.TipoDeIdentificacionCod = int.Parse(row["cli_tdoc"].ToString());
                 cliente.PaisCod = int.Parse(row["cli_nacionalidad"].ToString());
+                cliente.Activo = char.Parse(row["cli_estado"].ToString()) == 's';
                 cliente.Usuario = new Usuario();
                 cliente.Usuario.Id = int.Parse(row["usu_id"].ToString());
                 cliente.Usuario.get();
-                //MessageBox.Show("us id" + cliente.Usuario.Id);
-               /* foreach(TipoIdentificacion ti in DataSession.TipoIdentificaciones)
-                {
-                    if (ti.Id == int.Parse(row["cli_tdoc"].ToString()) )
-                        cliente.TipoDeIdentificacion = ti;
-                }*/
-               //cliente.CodigoTipoIdentificacion = row["codigo_tipo_identificacion"].ToString();
-                //cliente.Activo = char.Parse(row["cli_estado"].ToString()) == 's';
              }
         }
 
