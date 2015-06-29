@@ -117,14 +117,18 @@ begin
 	select @monedaId = moneda_id from NEW_SOLUTION.Monedas where moneda_descrip = @moneda;
 	select @cateAntId = ctacateg_id from NEW_SOLUTION.Cuentas_categ where ctacateg_descrip = @categoria;
 
-	update NEW_SOLUTION.Cuentas
-	set cta_estado = cta_estado_id
-	from NEW_SOLUTION.Cuentas_estado
-	where cta_estado_descrip = 'Cuenta Cerrada'
-	and cta_num = @numero and cta_cli_id = @clienteId and cta_pais_apertura = @paisAperturaId and cta_moneda = @monedaId and cta_tipo = @cateAntId;
-	
-	return 1;
-
+	if((select COUNT(*) from NEW_SOLUTION.Facturas_costos where factcto_cta_origen = @numero and factcto_cta_origen_pais = @paisAperturaId and faccto_fact_id is null) = 0)
+	begin
+		update NEW_SOLUTION.Cuentas
+		set cta_estado = cta_estado_id
+		from NEW_SOLUTION.Cuentas_estado
+		where cta_estado_descrip = 'Cuenta Cerrada'
+		and cta_num = @numero and cta_cli_id = @clienteId and cta_pais_apertura = @paisAperturaId and cta_moneda = @monedaId and cta_tipo = @cateAntId;
+		
+		return 1;
+	end
+	else 
+		return -1;
 end
 
 
