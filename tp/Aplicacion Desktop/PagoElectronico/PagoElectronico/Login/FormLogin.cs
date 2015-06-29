@@ -31,29 +31,35 @@ namespace PagoElectronico.Login
             {
                 this.usuario.Username = tbUsername.Text;
                 this.usuario.Password = tbPassword.Text;
+
                 int result = usuario.login();
+              
                 switch (result)
                 {
-                    case 1:
-                        if (usuario.Roles.Count > 1)
-                        {
-                            FormChooseRol frmRoles = new FormChooseRol(usuario);
-                            frmRoles.ShowDialog();
-                        }
-                        else
-                        {
-                            usuario.rolPorDefecto();
-                        }
+                    case 1:                               
+                                //Detecto si tiene mas de un rol el usuario.
+                                if (usuario.Roles.Count > 1)
+                                {
+                                    //Abro un popup para elegir el rol.
+                                    FormChooseRol frmRoles = new FormChooseRol(usuario);
+                                    frmRoles.ShowDialog();
+                                }
+                                else
+                                {
+                                    //Elijo el primero.
+                                    usuario.rolPorDefecto();
+                                }
 
-                        this.DialogResult = DialogResult.OK;
-                        break;
+                                this.DialogResult = DialogResult.OK;
+                                break;
                     case -1:
-                        MessageBox.Show("Login incorrecto");
-                        break;
+                                MessageBox.Show("Login incorrecto");
+                                break;
                     case -2:
-                        MessageBox.Show("Usuario inhabilitado");
-                        break;
-                }
+                                MessageBox.Show("Usuario inhabilitado");
+                                break;
+                }                
+                
                 this.Close();
             }
             else

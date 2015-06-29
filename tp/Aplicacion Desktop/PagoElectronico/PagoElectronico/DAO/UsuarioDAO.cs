@@ -24,18 +24,47 @@ namespace PagoElectronico.DAO
             return cadena.ToString();
         }
 
-        public int login(Usuario usuario) {
+        /*
+        public int Cargar_roles(Usuario usuario)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("id_usuario", usuario.Id));
+            parametros.Add(new SqlParameter("id_rol", null));
+
+            DataTable data = new DataTable();
+            data = list("NEW_SOLUTION.sp_rol_get", parametros);
+
+            MessageBox.Show("@@"+usuario.Id);
+
+            foreach (DataColumn col in data.Columns)
+            {
+                foreach (DataRow row in data.Rows)
+                {
+                    MessageBox.Show(row["rol_id"].ToString() + " - " + row["rol_nombre"].ToString());
+                }
+            } 
+
+            return data.Rows.Count;
+        }
+        */
+
+        public int login(Usuario usuario)
+        {
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("username", usuario.Username));
             parametros.Add(new SqlParameter("password", usuario.Password == null ? null : GenerarSHA256(usuario.Password)));
-            parametros.Add(new SqlParameter("fecha", DataSession.FechaSistema.ToString(formatDateTime)));
+            parametros.Add(new SqlParameter("fecha", DataSession.FechaSistema.ToString(formatDateTime)));            
             usuario.Id = callProcedure("NEW_SOLUTION.sp_usuario_login", parametros);
-            //MessageBox.Show("Usuario id: "+usuario.Id);
+
             if (usuario.Id > 0)
             {
                 usuario.get();
+                return 1;
             }
-            return usuario.Id > 0 ? 1 : usuario.Id;
+            else
+            {
+                return usuario.Id;
+            }
         }
 
         #region IDAO<Usuario> Members
@@ -73,7 +102,6 @@ namespace PagoElectronico.DAO
                 rol.IdUsuario = usuario.Id;
                 usuario.Roles = rol.getAll();
                 //MessageBox.Show("Cant roles: "+usuario.Roles.Count);
-
             }
         }
 
