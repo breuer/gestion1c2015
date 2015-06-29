@@ -49,7 +49,7 @@ namespace PagoElectronico.Saldos
         private void FormSaldo_Load(object sender, EventArgs e)
         {
             cargar_combos();
-            label_importe.Text = "0000000";
+            label_importe.Text = "_____________";
         }
 
 

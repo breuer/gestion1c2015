@@ -117,9 +117,9 @@
             this.label_importe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_importe.Location = new System.Drawing.Point(15, 231);
             this.label_importe.Name = "label_importe";
-            this.label_importe.Size = new System.Drawing.Size(64, 18);
+            this.label_importe.Size = new System.Drawing.Size(112, 18);
             this.label_importe.TabIndex = 19;
-            this.label_importe.Text = "0000000";
+            this.label_importe.Text = "_____________";
             // 
             // label5
             // 

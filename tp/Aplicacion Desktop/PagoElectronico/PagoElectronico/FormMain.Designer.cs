@@ -54,6 +54,7 @@
             this.admin_tab = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn_abm_cuentas = new System.Windows.Forms.Button();
             this.btn_facturacion = new System.Windows.Forms.Button();
             this.btn_estadisticas = new System.Windows.Forms.Button();
@@ -86,7 +87,6 @@
             this.button25 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -357,7 +357,6 @@
             // 
             this.admin_tab.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.admin_tab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.admin_tab.Controls.Add(this.button1);
             this.admin_tab.Controls.Add(this.label4);
             this.admin_tab.Controls.Add(this.groupBox4);
             this.admin_tab.Controls.Add(this.groupBox3);
@@ -382,49 +381,61 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button1);
             this.groupBox4.Controls.Add(this.btn_abm_cuentas);
             this.groupBox4.Controls.Add(this.btn_facturacion);
             this.groupBox4.Controls.Add(this.btn_estadisticas);
-            this.groupBox4.Location = new System.Drawing.Point(573, 53);
+            this.groupBox4.Location = new System.Drawing.Point(606, 53);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(152, 160);
+            this.groupBox4.Size = new System.Drawing.Size(165, 160);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Cuentas";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(26, 115);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "Saldo";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btn_abm_cuentas
             // 
-            this.btn_abm_cuentas.Location = new System.Drawing.Point(19, 25);
+            this.btn_abm_cuentas.Location = new System.Drawing.Point(26, 25);
             this.btn_abm_cuentas.Name = "btn_abm_cuentas";
-            this.btn_abm_cuentas.Size = new System.Drawing.Size(113, 33);
+            this.btn_abm_cuentas.Size = new System.Drawing.Size(113, 22);
             this.btn_abm_cuentas.TabIndex = 3;
             this.btn_abm_cuentas.Text = "ABM";
             this.btn_abm_cuentas.UseVisualStyleBackColor = true;
             // 
             // btn_facturacion
             // 
-            this.btn_facturacion.Location = new System.Drawing.Point(19, 64);
+            this.btn_facturacion.Location = new System.Drawing.Point(26, 52);
             this.btn_facturacion.Name = "btn_facturacion";
-            this.btn_facturacion.Size = new System.Drawing.Size(113, 33);
+            this.btn_facturacion.Size = new System.Drawing.Size(113, 26);
             this.btn_facturacion.TabIndex = 4;
             this.btn_facturacion.Text = "Facturacion";
             this.btn_facturacion.UseVisualStyleBackColor = true;
             // 
             // btn_estadisticas
             // 
-            this.btn_estadisticas.Location = new System.Drawing.Point(19, 103);
+            this.btn_estadisticas.Location = new System.Drawing.Point(26, 84);
             this.btn_estadisticas.Name = "btn_estadisticas";
-            this.btn_estadisticas.Size = new System.Drawing.Size(113, 33);
+            this.btn_estadisticas.Size = new System.Drawing.Size(113, 25);
             this.btn_estadisticas.TabIndex = 5;
             this.btn_estadisticas.Text = "Estadisticas";
             this.btn_estadisticas.UseVisualStyleBackColor = true;
+            this.btn_estadisticas.Click += new System.EventHandler(this.btn_estadisticas_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btn_add_rol);
             this.groupBox3.Controls.Add(this.btn_del_rol);
             this.groupBox3.Controls.Add(this.btn_upd_rol);
-            this.groupBox3.Location = new System.Drawing.Point(216, 53);
+            this.groupBox3.Location = new System.Drawing.Point(228, 53);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(152, 160);
             this.groupBox3.TabIndex = 11;
@@ -463,7 +474,7 @@
             this.groupBox2.Controls.Add(this.btn_add_cliente);
             this.groupBox2.Controls.Add(this.btn_del_cliente);
             this.groupBox2.Controls.Add(this.btn_upd_cliente);
-            this.groupBox2.Location = new System.Drawing.Point(396, 53);
+            this.groupBox2.Location = new System.Drawing.Point(416, 53);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(152, 160);
             this.groupBox2.TabIndex = 10;
@@ -690,16 +701,6 @@
             this.button27.TabIndex = 2;
             this.button27.Text = "Actualizar usuario";
             this.button27.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(712, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormMain
             // 

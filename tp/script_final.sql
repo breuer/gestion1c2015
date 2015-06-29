@@ -349,9 +349,10 @@ go
 create table NEW_SOLUTION.Facturas
 (
 	fact_id			bigint identity(1,1),
-	fact_cta_num	numeric(18,8),
+	fact_cta_id		numeric(18,0),
 	fact_total		numeric(18,2),
 	fact_cli_id		bigint,
+	fact_fecha		datetime
 	primary key(fact_id)
 )
 go
@@ -1489,3 +1490,38 @@ begin
 end
 go
 
+--Estadisticas PUNTO 5
+create procedure NEW_SOLUTION.sp_stats_5(@inicio datetime,@fin datetime)
+as
+begin
+	--Realizo la consulta
+	select a.ctacateg_id,
+		   a.ctacateg_descrip,
+		   sum(f.fact_total)
+	from       NEW_SOLUTION.Cuentas_categ as a
+	inner join NEW_SOLUTION.Cuentas as cta on cta.cta_tipo=a.ctacateg_id
+	inner join NEW_SOLUTION.Facturas as f on f.fact_cta_id=cta.cta_id
+	where f.fact_fecha  >= @inicio
+	and   f.fact_fecha   <= @fin
+	group by a.ctacateg_id,a.ctacateg_descrip	
+end
+go
+
+--Estadisticas PUNTO 4
+create procedure NEW_SOLUTION.sp_stats_4(@inicio datetime,@fin datetime)
+as
+begin
+	
+	--Realizo la consulta	
+	select p.pais_descrip,
+		  (COUNT(depo.depo_id)+COUNT(ret.ret_id)) as movimientos
+	from NEW_SOLUTION.Paises as p
+	inner join NEW_SOLUTION.Cuentas as cta on cta.cta_pais_apertura =p.pais_id
+	left join NEW_SOLUTION.Depositos as depo on depo.depo_cta_id = cta.cta_id
+	left join NEW_SOLUTION.Retiros as ret on ret.ret_cta_id=cta.cta_id
+	where  (depo.depo_fecha>=@inicio and depo.depo_fecha<=@fin)
+	or     (ret.ret_fecha>=@inicio   and ret.ret_fecha<=@fin)
+	group by p.pais_descrip
+	having (COUNT(depo.depo_id)+COUNT(ret.ret_id))>0
+	order by (COUNT(depo.depo_id)+COUNT(ret.ret_id)) desc	
+end

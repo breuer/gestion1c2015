@@ -267,5 +267,11 @@ namespace PagoElectronico
             FormSaldo_admin frmsaldoAdm = new FormSaldo_admin(DataSession.Usuario);
             frmsaldoAdm.Show();
         }
+
+        private void btn_estadisticas_Click(object sender, EventArgs e)
+        {
+            FormListadoEstadistico frm = new FormListadoEstadistico();
+            frm.Show();
+        }
     }
 }
