@@ -60,6 +60,18 @@
     <Compile Include="ABM Cliente\FormSearchCliente.Designer.cs">
       <DependentUpon>FormSearchCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Cuenta\FormCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormCuenta.Designer.cs">
+      <DependentUpon>FormCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormListadoCuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormListadoCuentas.Designer.cs">
+      <DependentUpon>FormListadoCuentas.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM de Usuario\FormSearchUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +97,7 @@
       <DependentUpon>FormSearchRol.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\ClienteDAO.cs" />
+    <Compile Include="DAO\CuentaDAO.cs" />
     <Compile Include="DAO\FuncionalidadDAO.cs" />
     <Compile Include="DAO\IDAO.cs" />
     <Compile Include="DAO\ListadoDAO.cs" />
@@ -131,9 +144,12 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\Cuenta.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
     <Compile Include="Model\Listado.cs" />
+    <Compile Include="Model\Moneda.cs" />
     <Compile Include="Model\Pais.cs" />
+    <Compile Include="Model\TipoCuenta.cs" />
     <Compile Include="Model\TipoIdentificacion.cs" />
     <Compile Include="Model\IModel.cs" />
     <Compile Include="Model\Rol.cs" />
@@ -145,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Cliente\FormSearchCliente.resx">
       <DependentUpon>FormSearchCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Cuenta\FormCuenta.resx">
+      <DependentUpon>FormCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Cuenta\FormListadoCuentas.resx">
+      <DependentUpon>FormListadoCuentas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\FormSearchUsuario.resx">
       <DependentUpon>FormSearchUsuario.cs</DependentUpon>
@@ -194,7 +216,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ABM Cuenta\" />
     <Folder Include="Consulta Saldos\" />
     <Folder Include="Facturacion\Depositos\" />
     <Folder Include="Retiros\" />

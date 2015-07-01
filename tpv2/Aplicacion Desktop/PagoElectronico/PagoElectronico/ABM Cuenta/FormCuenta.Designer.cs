@@ -1,4 +1,4 @@
-﻿namespace PagoElectronico.ABM_Cliente
+﻿namespace PagoElectronico.ABM_Cuenta
 {
     partial class FormCuenta
     {
@@ -28,57 +28,160 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btModCliente = new System.Windows.Forms.Button();
+            this.cbTipoCuenta = new System.Windows.Forms.ComboBox();
+            this.cbMoneda = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbFechaApertura = new System.Windows.Forms.TextBox();
+            this.tbNroCuenta = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbPais = new System.Windows.Forms.ComboBox();
             this.btAddCuenta = new System.Windows.Forms.Button();
-            this.btModCuenta = new System.Windows.Forms.Button();
+            this.btClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btModCliente
+            // cbTipoCuenta
             // 
-            this.btModCliente.Location = new System.Drawing.Point(67, 101);
-            this.btModCliente.Name = "btModCliente";
-            this.btModCliente.Size = new System.Drawing.Size(75, 29);
-            this.btModCliente.TabIndex = 6;
-            this.btModCliente.Text = "Baja";
-            this.btModCliente.UseVisualStyleBackColor = true;
-            this.btModCliente.Click += new System.EventHandler(this.btAddCliente_Click);
+            this.cbTipoCuenta.FormattingEnabled = true;
+            this.cbTipoCuenta.Location = new System.Drawing.Point(313, 212);
+            this.cbTipoCuenta.Name = "cbTipoCuenta";
+            this.cbTipoCuenta.Size = new System.Drawing.Size(202, 21);
+            this.cbTipoCuenta.TabIndex = 41;
+            // 
+            // cbMoneda
+            // 
+            this.cbMoneda.FormattingEnabled = true;
+            this.cbMoneda.Location = new System.Drawing.Point(313, 134);
+            this.cbMoneda.Name = "cbMoneda";
+            this.cbMoneda.Size = new System.Drawing.Size(202, 21);
+            this.cbMoneda.TabIndex = 40;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(63, 221);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Tipo de cuenta";
+            // 
+            // tbFechaApertura
+            // 
+            this.tbFechaApertura.Location = new System.Drawing.Point(313, 172);
+            this.tbFechaApertura.Name = "tbFechaApertura";
+            this.tbFechaApertura.Size = new System.Drawing.Size(202, 20);
+            this.tbFechaApertura.TabIndex = 38;
+            // 
+            // tbNroCuenta
+            // 
+            this.tbNroCuenta.Location = new System.Drawing.Point(313, 51);
+            this.tbNroCuenta.Name = "tbNroCuenta";
+            this.tbNroCuenta.Size = new System.Drawing.Size(202, 20);
+            this.tbNroCuenta.TabIndex = 37;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(63, 179);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Fecha de apertura";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(63, 142);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Moneda";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(63, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "País de registro";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(63, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Número de cuenta";
+            // 
+            // cbPais
+            // 
+            this.cbPais.FormattingEnabled = true;
+            this.cbPais.Location = new System.Drawing.Point(313, 86);
+            this.cbPais.Name = "cbPais";
+            this.cbPais.Size = new System.Drawing.Size(202, 21);
+            this.cbPais.TabIndex = 32;
             // 
             // btAddCuenta
             // 
-            this.btAddCuenta.Location = new System.Drawing.Point(67, 44);
+            this.btAddCuenta.Location = new System.Drawing.Point(400, 276);
             this.btAddCuenta.Name = "btAddCuenta";
-            this.btAddCuenta.Size = new System.Drawing.Size(75, 28);
-            this.btAddCuenta.TabIndex = 7;
-            this.btAddCuenta.Text = "Alta";
+            this.btAddCuenta.Size = new System.Drawing.Size(75, 23);
+            this.btAddCuenta.TabIndex = 42;
+            this.btAddCuenta.Text = "Aceptar";
             this.btAddCuenta.UseVisualStyleBackColor = true;
+            this.btAddCuenta.Click += new System.EventHandler(this.btAddCuenta_Click);
             // 
-            // btModCuenta
+            // btClose
             // 
-            this.btModCuenta.Location = new System.Drawing.Point(67, 161);
-            this.btModCuenta.Name = "btModCuenta";
-            this.btModCuenta.Size = new System.Drawing.Size(75, 27);
-            this.btModCuenta.TabIndex = 8;
-            this.btModCuenta.Text = "Modificacion";
-            this.btModCuenta.UseVisualStyleBackColor = true;
+            this.btClose.Location = new System.Drawing.Point(79, 266);
+            this.btClose.Name = "btClose";
+            this.btClose.Size = new System.Drawing.Size(75, 23);
+            this.btClose.TabIndex = 43;
+            this.btClose.Text = "Cancelar";
+            this.btClose.UseVisualStyleBackColor = true;
+            this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
             // FormCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
-            this.Controls.Add(this.btModCuenta);
+            this.ClientSize = new System.Drawing.Size(578, 320);
+            this.Controls.Add(this.btClose);
             this.Controls.Add(this.btAddCuenta);
-            this.Controls.Add(this.btModCliente);
+            this.Controls.Add(this.cbTipoCuenta);
+            this.Controls.Add(this.cbMoneda);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbFechaApertura);
+            this.Controls.Add(this.tbNroCuenta);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbPais);
             this.Name = "FormCuenta";
             this.Text = "FormCuenta";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btModCliente;
+        private System.Windows.Forms.ComboBox cbTipoCuenta;
+        private System.Windows.Forms.ComboBox cbMoneda;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbFechaApertura;
+        private System.Windows.Forms.TextBox tbNroCuenta;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbPais;
         private System.Windows.Forms.Button btAddCuenta;
-        private System.Windows.Forms.Button btModCuenta;
+        private System.Windows.Forms.Button btClose;
     }
 }

@@ -18,6 +18,7 @@ namespace PagoElectronico.Model
         private int paisCod;
         private bool activo;
         private Usuario usuario;
+        private List<Cuenta> cuentas;
 
 
         public long? Id { get { return id; } set { id = value; } }
@@ -31,7 +32,15 @@ namespace PagoElectronico.Model
         public int PaisCod { get { return paisCod; } set { paisCod = value; } }
         public bool Activo { get { return activo; } set { activo = value; } }
         public Usuario Usuario { get { return usuario; } set { usuario = value; } }
-
+        public List<Cuenta> Cuentas { 
+            get {
+                if (cuentas == null)
+                {
+                    cuentas = new List<Cuenta>();
+                }
+                return cuentas; 
+            } 
+            set { cuentas = value; } }
         #region IModel<Cliente> Members
 
         public int add()

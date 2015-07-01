@@ -65,3 +65,5 @@ C:\Users\leo\Gestion de datos\gestion1c2015\tpv2\Aplicacion Desktop\PagoElectron
 C:\Users\leo\Gestion de datos\gestion1c2015\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Login.FormLogin.resources
 C:\Users\leo\Gestion de datos\gestion1c2015\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Properties.Resources.resources
 C:\Users\leo\Gestion de datos\gestion1c2015\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.csproj.GenerateResource.Cache
+C:\Users\leo\Gestion de datos\gestion1c2015\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.ABM_Cuenta.FormCuenta.resources
+C:\Users\leo\Gestion de datos\gestion1c2015\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.ABM_Cuenta.FormListadoCuentas.resources

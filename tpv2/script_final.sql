@@ -346,6 +346,7 @@ values
 	(2,'Usuario'),
 	(3,'Cliente'),
 	(4,'Cuenta'),
+	(5,'Cuentas clientes'),
 	(10,'Listados')
 --Completar con las que faltan.
 
@@ -361,6 +362,7 @@ values
 	(1,1),
 	(1,2),
 	(1,3),
+	(1,5),
 	(1,10),
 	(2,4)
 

@@ -12,6 +12,7 @@ using PagoElectronico.ABM_Rol;
 using PagoElectronico.ABM_de_Usuario;
 using PagoElectronico.ABM_Cliente;
 using PagoElectronico.Listados;
+using PagoElectronico.ABM_Cuenta;
 
 namespace PagoElectronico
 {
@@ -28,6 +29,8 @@ namespace PagoElectronico
                 this.pnlUsuario.Visible = false;
                 this.pnlCliente.Visible = false;
                 this.pnlListados.Visible = false;
+                this.pnlCuenta.Visible = false;
+                this.pnlCuentasClientes.Visible = false;
             }
             else
             {
@@ -47,6 +50,14 @@ namespace PagoElectronico
                     if (funcionalidad.Nombre.Equals("Cliente"))
                     {
                         this.pnlCliente.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Cuenta"))
+                    {
+                        this.pnlCuenta.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Cuentas clientes"))
+                    {
+                        this.pnlCuentasClientes.Visible = true;
                     }
                     if (funcionalidad.Nombre.Equals("Listados"))
                     {
@@ -165,7 +176,31 @@ namespace PagoElectronico
             this.Close();
         }
 
+        
+        /******************************* CUENTA   **********************************/
 
+
+        private void btCuentaClientes_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente();
+            FormSearchCliente frmS = new FormSearchCliente(cliente);
+            frmS.ShowDialog();
+
+            if (frmS.DialogResult == DialogResult.OK)
+            {
+                cliente.get();
+                FormListadoCuentas frm = new FormListadoCuentas(cliente);
+                frm.ShowDialog();
+            }
+
+        }
+
+        private void btCuenta_Click(object sender, EventArgs e)
+        {
+            //FormListadoCuentas frm = new FormListadoCuentas(cliente);
+            //frm.ShowDialog();
+
+        }
 
 
     }

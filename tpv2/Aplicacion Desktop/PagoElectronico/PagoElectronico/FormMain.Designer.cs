@@ -40,18 +40,23 @@
             this.pnlCliente = new System.Windows.Forms.Panel();
             this.btUpdateCliente = new System.Windows.Forms.Button();
             this.btAddCliente = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlCuentasClientes = new System.Windows.Forms.Panel();
+            this.btCuentaClientes = new System.Windows.Forms.Button();
+            this.btCuenta = new System.Windows.Forms.Button();
             this.btExit = new System.Windows.Forms.Button();
             this.btChangePassword = new System.Windows.Forms.Button();
             this.pnlSession = new System.Windows.Forms.Panel();
             this.pnlListados = new System.Windows.Forms.Panel();
             this.btListadosEstadisticos = new System.Windows.Forms.Button();
+            this.pnlCuenta = new System.Windows.Forms.Panel();
             this.pnlLogin.SuspendLayout();
             this.pnlRol.SuspendLayout();
             this.pnlUsuario.SuspendLayout();
             this.pnlCliente.SuspendLayout();
+            this.pnlCuentasClientes.SuspendLayout();
             this.pnlSession.SuspendLayout();
             this.pnlListados.SuspendLayout();
+            this.pnlCuenta.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlLogin
@@ -168,12 +173,33 @@
             this.btAddCliente.UseVisualStyleBackColor = true;
             this.btAddCliente.Click += new System.EventHandler(this.btAddCliente_Click);
             // 
-            // panel1
+            // pnlCuentasClientes
             // 
-            this.panel1.Location = new System.Drawing.Point(207, 236);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 100);
-            this.panel1.TabIndex = 4;
+            this.pnlCuentasClientes.Controls.Add(this.btCuentaClientes);
+            this.pnlCuentasClientes.Location = new System.Drawing.Point(207, 236);
+            this.pnlCuentasClientes.Name = "pnlCuentasClientes";
+            this.pnlCuentasClientes.Size = new System.Drawing.Size(200, 53);
+            this.pnlCuentasClientes.TabIndex = 4;
+            // 
+            // btCuentaClientes
+            // 
+            this.btCuentaClientes.Location = new System.Drawing.Point(41, 11);
+            this.btCuentaClientes.Name = "btCuentaClientes";
+            this.btCuentaClientes.Size = new System.Drawing.Size(112, 23);
+            this.btCuentaClientes.TabIndex = 0;
+            this.btCuentaClientes.Text = "Cuentas Clientes";
+            this.btCuentaClientes.UseVisualStyleBackColor = true;
+            this.btCuentaClientes.Click += new System.EventHandler(this.btCuentaClientes_Click);
+            // 
+            // btCuenta
+            // 
+            this.btCuenta.Location = new System.Drawing.Point(41, 15);
+            this.btCuenta.Name = "btCuenta";
+            this.btCuenta.Size = new System.Drawing.Size(92, 23);
+            this.btCuenta.TabIndex = 1;
+            this.btCuenta.Text = "Cuenta";
+            this.btCuenta.UseVisualStyleBackColor = true;
+            this.btCuenta.Click += new System.EventHandler(this.btCuenta_Click);
             // 
             // btExit
             // 
@@ -222,15 +248,24 @@
             this.btListadosEstadisticos.UseVisualStyleBackColor = true;
             this.btListadosEstadisticos.Click += new System.EventHandler(this.btListadosEstadisticos_Click);
             // 
+            // pnlCuenta
+            // 
+            this.pnlCuenta.Controls.Add(this.btCuenta);
+            this.pnlCuenta.Location = new System.Drawing.Point(207, 307);
+            this.pnlCuenta.Name = "pnlCuenta";
+            this.pnlCuenta.Size = new System.Drawing.Size(200, 52);
+            this.pnlCuenta.TabIndex = 8;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 401);
+            this.Controls.Add(this.pnlCuenta);
             this.Controls.Add(this.pnlListados);
             this.Controls.Add(this.pnlSession);
             this.Controls.Add(this.btExit);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlCuentasClientes);
             this.Controls.Add(this.pnlCliente);
             this.Controls.Add(this.pnlUsuario);
             this.Controls.Add(this.pnlRol);
@@ -241,8 +276,10 @@
             this.pnlRol.ResumeLayout(false);
             this.pnlUsuario.ResumeLayout(false);
             this.pnlCliente.ResumeLayout(false);
+            this.pnlCuentasClientes.ResumeLayout(false);
             this.pnlSession.ResumeLayout(false);
             this.pnlListados.ResumeLayout(false);
+            this.pnlCuenta.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -261,11 +298,14 @@
         private System.Windows.Forms.Panel pnlCliente;
         private System.Windows.Forms.Button btUpdateCliente;
         private System.Windows.Forms.Button btAddCliente;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlCuentasClientes;
         private System.Windows.Forms.Button btExit;
         private System.Windows.Forms.Button btChangePassword;
         private System.Windows.Forms.Panel pnlSession;
         private System.Windows.Forms.Panel pnlListados;
         private System.Windows.Forms.Button btListadosEstadisticos;
+        private System.Windows.Forms.Button btCuenta;
+        private System.Windows.Forms.Button btCuentaClientes;
+        private System.Windows.Forms.Panel pnlCuenta;
     }
 }

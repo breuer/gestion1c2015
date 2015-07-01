@@ -8,25 +8,35 @@ using System.Text;
 using System.Windows.Forms;
 using PagoElectronico.Model;
 
-
-namespace PagoElectronico.ABM_Cliente
+namespace PagoElectronico.ABM_Cuenta
 {
     public partial class FormCuenta : Form
     {
-        private Cliente cliente;
+        private Cuenta cuenta;
 
-        public FormCuenta(Cliente cliente)
+        private void initCBB()
         {
-            InitializeComponent();
-            this.cliente = cliente;
+            this.cbPais.DataSource = DataSession.Paices;
+            this.cbPais.ValueMember = "id";
+            this.cbPais.DisplayMember = "nombre";
+            this.cbPais.SelectedIndex = -1;
         }
 
-        private void btAddCliente_Click(object sender, EventArgs e)
+        public FormCuenta(Cuenta cuenta)
         {
-            cliente.Apellido = this.tbApellido.Text;
-            cliente.Nombre = this.tbNombre.Text;
-            cliente.Mail = this.tbMail.Text;
-            
+            InitializeComponent();
+            this.cuenta = cuenta;
+            this.initCBB();
+        }
+
+        private void btAddCuenta_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
