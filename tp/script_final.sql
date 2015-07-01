@@ -61,7 +61,7 @@ IF (OBJECT_ID('[NEW_SOLUTION].Clientes_estado') is not null)		drop table [NEW_SO
 go
 IF (OBJECT_ID('[NEW_SOLUTION].Usuarios_estado') is not null)		drop table [NEW_SOLUTION].Usuarios_estado
 go
-IF (OBJECT_ID('[NEW_SOLUTION].Cuentas_estados') is not null)		drop table [NEW_SOLUTION].Cuentas_estados
+IF (OBJECT_ID('[NEW_SOLUTION].Cuentas_estado') is not null)			drop table [NEW_SOLUTION].Cuentas_estado
 go
 IF (OBJECT_ID('[NEW_SOLUTION].Tarjetas_estado') is not null)		drop table [NEW_SOLUTION].Tarjetas_estado
 go
