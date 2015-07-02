@@ -356,6 +356,7 @@ create table NEW_SOLUTION.Facturas
 	fact_cta_num	numeric(18,8),
 	fact_total		numeric(18,2),
 	fact_cli_id		bigint,
+	fact_fecha		datetime,
 	primary key(fact_id)
 )
 go
@@ -743,7 +744,7 @@ as
 	from
 		NEW_SOLUTION.Usuarios u
 	where 
-		u.usu_estado =5			
+		u.usu_estado =1			
 go
 
 --Devuelve el listado de los usuarios inactivos.
@@ -761,7 +762,7 @@ as
 	from
 		NEW_SOLUTION.usuarios u
 	where 
-		u.usu_estado <> 5			
+		u.usu_estado <> 1			
 go
 
 
@@ -975,8 +976,8 @@ as
 		   a.cta_pais_apertura,
 		   p.pais_descrip
 	from NEW_SOLUTION.Cuentas as a
-	inner join NEW_SOLUTION.Clientes as b on b.cli_id = a.cta_cli_id	
-	inner join NEW_SOLUTION.Paises   as p on p.pais_cod   = a.cta_pais_apertura
+	left join NEW_SOLUTION.Clientes as b on b.cli_id = a.cta_cli_id	
+	left join NEW_SOLUTION.Paises   as p on p.pais_cod   = a.cta_pais_apertura
 	where a.cta_num   = @cuentaNum
 	and   a.cta_estado=1
 go
@@ -1292,6 +1293,7 @@ begin
 	having (COUNT(depo.depo_id)+COUNT(ret.ret_id))>0
 	order by (COUNT(depo.depo_id)+COUNT(ret.ret_id)) desc	
 end
+go
 
 -- obtiene funcionalidades (todas o de un rol) 
 create procedure NEW_SOLUTION.sp_funcionalidad_get
@@ -1525,7 +1527,8 @@ begin
 	begin
 		if exists (select * from NEW_SOLUTION.v_usuarios_inactivos u where u.usu_nombre = @username )
 			set @resultado_login = -2; -- usuario dado de baja
-		else begin
+		else
+		begin
 			select 
 				@id_usuario = u.usu_id,
 				@password_usuario = u.usu_password
