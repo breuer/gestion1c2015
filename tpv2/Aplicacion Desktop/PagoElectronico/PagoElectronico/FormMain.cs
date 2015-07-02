@@ -13,6 +13,10 @@ using PagoElectronico.ABM_de_Usuario;
 using PagoElectronico.ABM_Cliente;
 using PagoElectronico.Listados;
 using PagoElectronico.ABM_Cuenta;
+using PagoElectronico.Transferencias;
+using PagoElectronico.Saldos;
+using PagoElectronico.Retiros;
+using PagoElectronico.Depositos;
 
 namespace PagoElectronico
 {
@@ -31,6 +35,12 @@ namespace PagoElectronico
                 this.pnlListados.Visible = false;
                 this.pnlCuenta.Visible = false;
                 this.pnlCuentasClientes.Visible = false;
+                this.btn_transf.Visible = false;
+                this.btn_deposito.Visible = false;
+                this.btn_retiro.Visible = false;
+                this.btn_saldo_cli.Visible = false;
+                this.btn_saldo_admin.Visible = false;
+
             }
             else
             {
@@ -39,19 +49,19 @@ namespace PagoElectronico
                 this.pnlSession.Visible = true;
                 foreach (Funcionalidad funcionalidad in DataSession.Usuario.RolSeleccionado.Funcionalidades)
                 {
-                    if (funcionalidad.Nombre.Equals("Rol"))
+                    if (funcionalidad.Nombre.Equals("Roles"))
                     {
                         this.pnlRol.Visible = true;
                     }
-                    if (funcionalidad.Nombre.Equals("Usuario"))
+                    if (funcionalidad.Nombre.Equals("Usuarios"))
                     {
                         this.pnlUsuario.Visible = true;
                     }
-                    if (funcionalidad.Nombre.Equals("Cliente"))
+                    if (funcionalidad.Nombre.Equals("Clientes"))
                     {
                         this.pnlCliente.Visible = true;
                     }
-                    if (funcionalidad.Nombre.Equals("Cuenta"))
+                    if (funcionalidad.Nombre.Equals("Cuentas"))
                     {
                         this.pnlCuenta.Visible = true;
                     }
@@ -59,9 +69,29 @@ namespace PagoElectronico
                     {
                         this.pnlCuentasClientes.Visible = true;
                     }
-                    if (funcionalidad.Nombre.Equals("Listados"))
+                    if (funcionalidad.Nombre.Equals("Estadisticas"))
                     {
                         this.pnlListados.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Transferencias"))
+                    {
+                        this.btn_transf.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Depositos"))
+                    {
+                        this.btn_deposito.Visible=true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Retiros"))
+                    {
+                        this.btn_retiro.Visible=true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Saldo"))
+                    {
+                        this.btn_saldo_cli.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Saldo admin"))
+                    {
+                        this.btn_saldo_admin.Visible = true;
                     }
                 }
             }
@@ -200,6 +230,41 @@ namespace PagoElectronico
             //FormListadoCuentas frm = new FormListadoCuentas(cliente);
             //frm.ShowDialog();
 
+        }
+
+        private void btUpdateUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormTransfer frmTransf = new FormTransfer(DataSession.Usuario);
+            frmTransf.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormDepositos frmDepositos = new FormDepositos(DataSession.Usuario);
+            frmDepositos.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormRetiros frmRetiros = new FormRetiros(DataSession.Usuario);
+            frmRetiros.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FormSaldo_cliente frmsaldo = new FormSaldo_cliente(DataSession.Usuario);
+            frmsaldo.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FormSaldo_admin frmsaldoAdm = new FormSaldo_admin(DataSession.Usuario);
+            frmsaldoAdm.Show();
         }
 
 

@@ -13,6 +13,11 @@ namespace PagoElectronico.DAO
     {
         public string formatDateTime = "yyyy-MM-dd HH:MM:ss";
 
+        public DateTime get_date()
+        {
+            return Properties.Settings.Default.SYSTEM_DATE;
+        }
+
         public DataTable list(String spName, List<SqlParameter> parametros)
         {
             SqlConnection sqlConnection = new SqlConnection(Properties.Settings.Default.dbConnection);

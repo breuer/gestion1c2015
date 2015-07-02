@@ -72,9 +72,10 @@ namespace PagoElectronico.Listados
 
         }
 
-        private void btAceptar_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Listado listado = new Listado();
+            
             listado.Year = int.Parse(this.cbYear.SelectedValue.ToString());
             listado.TipoListado = int.Parse(this.cbTipoListado.SelectedValue.ToString());
             foreach (Trimestre trimestre in trimestres)
