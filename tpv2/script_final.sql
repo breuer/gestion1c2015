@@ -356,6 +356,7 @@ create table NEW_SOLUTION.Facturas
 	fact_cta_num	numeric(18,8),
 	fact_total		numeric(18,2),
 	fact_cli_id		bigint,
+	fact_fecha		datetime,
 	primary key(fact_id)
 )
 go
@@ -743,7 +744,7 @@ as
 	from
 		NEW_SOLUTION.Usuarios u
 	where 
-		u.usu_estado =5			
+		u.usu_estado =1			
 go
 
 --Devuelve el listado de los usuarios inactivos.
@@ -761,13 +762,17 @@ as
 	from
 		NEW_SOLUTION.usuarios u
 	where 
-		u.usu_estado <> 5			
+		u.usu_estado <> 1			
 go
 
 
 /**************************************************************************
 				SP / FUNCIONES / TRIGGERS
 **************************************************************************/
+
+-----------------
+--	FUNCIONES  --
+-----------------
 
 --Dice si la cuenta pertenece a ese cliente.
 create function NEW_SOLUTION.cuenta_pertenece_cliente(@ctaNum numeric(18,0),@idpais int,@cliId bigint)
@@ -802,6 +807,163 @@ begin
 end
 go
 
+--Trae el id de usuario en base a su nombre.
+create function NEW_SOLUTION.f_get_id(@username varchar(255))
+RETURNS int
+AS BEGIN
+	declare @id_usuario int;
+	select 
+		@id_usuario = u.usu_id 
+	from 
+		NEW_SOLUTION.Usuarios u
+	where 
+		u.usu_nombre = @username;	
+	RETURN @id_usuario;
+END
+go
+
+--Dice si ambas cuentas tiene el mismo cliente.
+create function [NEW_SOLUTION].[cuenta_mismo_cliente](@cta1ID bigint,@cta2ID bigint)
+returns int
+as
+begin
+	declare @cli_1 bigint
+	declare @cli_2 bigint
+		    
+	set @cli_1=0
+	set @cli_2=0
+	
+	select @cli_1 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @cta1ID
+	select @cli_2 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @cta2ID
+	
+	if (@cli_1=@cli_2)
+		return 1
+	else
+		return 0
+		
+	return -1
+end
+go
+
+--------------
+-- TRIGGERS --
+--------------
+
+--Un trigger que se ejecuta cada vez que se realiza una transferencia, se usa para registrar los costos.
+create TRIGGER NEW_SOLUTION.registrar_costo_transferencia
+ON NEW_SOLUTION.Transferencias FOR INSERT
+as
+	insert into NEW_SOLUTION.Facturas_costos
+	(
+		factcto_num_op,
+		factcto_tipo_op,
+		factcto_cta_origen,
+		factcto_cta_origen_pais,
+		factcto_importe,
+		factcto_fecha,
+		factcto_costo,
+		faccto_fact_id,
+		factcto_estado
+	)
+	select	a.transf_id,
+			1,
+			a.transf_cta_origen,
+			a.transf_cta_pais_origen,
+			a.transf_importe,
+			a.transf_fecha,
+			a.transf_costo,
+			null,
+			null	
+	from    inserted as a
+	where   a.transf_costo>0
+go
+
+
+-- borra las funcionalidades de un rol
+create trigger NEW_SOLUTION.t_rol_update on NEW_SOLUTION.Roles
+for update
+as 
+	declare @rol_id int
+	
+	select 
+		@rol_id = i.rol_id
+	from
+		inserted i
+	delete
+		NEW_SOLUTION.Rol_funcionalidades
+	where
+		rol_id = @rol_id	
+go
+
+-- registra login incorrectos
+create trigger NEW_SOLUTION.t_login_insert on NEW_SOLUTION.Login
+for insert
+as 
+	declare @user_id int
+	declare @login_resultado varchar(1)
+	
+	select 
+		@user_id = i.login_user_id,
+		@login_resultado = i.login_resultado
+	from
+		inserted i
+		
+	if exists (select * from NEW_SOLUTION.Login_incorrectos l where l.logfalla_user_id = @user_id) begin
+		if(@login_resultado = 'n') begin
+			-- incremento intento fallido
+			update 			
+				NEW_SOLUTION.Login_incorrectos
+			set
+				logfalla_intento = logfalla_intento + 1
+			where 
+				logfalla_user_id = @user_id
+		end else begin
+			-- pongo a 0 intento fallido
+			update 			
+				NEW_SOLUTION.Login_incorrectos
+			set
+				logfalla_intento = 0
+			where 
+				logfalla_user_id = @user_id
+		end
+	end else begin		
+		if(@login_resultado = 'n') begin
+			-- primer intento fallido
+			insert into 
+				NEW_SOLUTION.Login_incorrectos (logfalla_user_id, logfalla_intento)
+			values 
+				(@user_id, 1)
+		end	
+	end
+go
+
+-- intentos fallidos de login
+create trigger NEW_SOLUTION.t_intento_fallido on NEW_SOLUTION.Login_incorrectos
+for update
+as 
+	declare @id int
+	declare @cant int
+	
+	select 
+		@id = i.logfalla_user_id ,
+		@cant = i.logfalla_intento 
+	from 
+		inserted i
+					
+	if(@cant >= 3 ) begin
+		update 
+			NEW_SOLUTION.Usuarios
+		set 
+			usu_estado = 'n'
+		where
+			usu_id = @id
+	end	
+go
+
+----------------------------------------------------------------------------
+--						STORE PROCEDURES								  --
+----------------------------------------------------------------------------
+
 --Buscar el numero de cuenta en base a su numero.
 create procedure NEW_SOLUTION.sp_buscar_cta_num(@cuentaNum bigint)
 as
@@ -814,8 +976,8 @@ as
 		   a.cta_pais_apertura,
 		   p.pais_descrip
 	from NEW_SOLUTION.Cuentas as a
-	inner join NEW_SOLUTION.Clientes as b on b.cli_id = a.cta_cli_id	
-	inner join NEW_SOLUTION.Paises   as p on p.pais_cod   = a.cta_pais_apertura
+	left join NEW_SOLUTION.Clientes as b on b.cli_id = a.cta_cli_id	
+	left join NEW_SOLUTION.Paises   as p on p.pais_cod   = a.cta_pais_apertura
 	where a.cta_num   = @cuentaNum
 	and   a.cta_estado=1
 go
@@ -1024,30 +1186,6 @@ as
 		return -1
 go
 
---Dice si ambas cuentas tiene el mismo cliente.
-create function [NEW_SOLUTION].[cuenta_mismo_cliente](@cta1ID bigint,@cta2ID bigint)
-returns int
-as
-begin
-	declare @cli_1 bigint
-	declare @cli_2 bigint
-		    
-	set @cli_1=0
-	set @cli_2=0
-	
-	select @cli_1 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @cta1ID
-	select @cli_2 = cta_cli_id from NEW_SOLUTION.Cuentas where cta_id = @cta2ID
-	
-	if (@cli_1=@cli_2)
-		return 1
-	else
-		return 0
-		
-	return -1
-end
-go
-
-
 --Hacer transferencia entre cuentas.
 create procedure [NEW_SOLUTION].[sp_cuenta_hacer_transferencia](@ctaOrigenId bigint,@ctaDestinoId bigint,@importe numeric(18,2),@idmoneda int,@fechaSys datetime)
 as
@@ -1121,36 +1259,6 @@ as
 	end
 go
 
---Un trigger que se ejecuta cada vez que se realiza una transferencia, se usa para registrar los costos.
-create TRIGGER NEW_SOLUTION.registrar_costo_transferencia
-ON NEW_SOLUTION.Transferencias FOR INSERT
-as
-	insert into NEW_SOLUTION.Facturas_costos
-	(
-		factcto_num_op,
-		factcto_tipo_op,
-		factcto_cta_origen,
-		factcto_cta_origen_pais,
-		factcto_importe,
-		factcto_fecha,
-		factcto_costo,
-		faccto_fact_id,
-		factcto_estado
-	)
-	select	a.transf_id,
-			1,
-			a.transf_cta_origen,
-			a.transf_cta_pais_origen,
-			a.transf_importe,
-			a.transf_fecha,
-			a.transf_costo,
-			null,
-			null	
-	from    inserted as a
-	where   a.transf_costo>0
-go
-
-
 --Estadisticas PUNTO 5
 create procedure NEW_SOLUTION.sp_stats_5(@inicio datetime,@fin datetime)
 as
@@ -1185,91 +1293,7 @@ begin
 	having (COUNT(depo.depo_id)+COUNT(ret.ret_id))>0
 	order by (COUNT(depo.depo_id)+COUNT(ret.ret_id)) desc	
 end
-
--- borra las funcionalidades de un rol
-create trigger NEW_SOLUTION.t_rol_update on NEW_SOLUTION.Roles
-for update
-as 
-	declare @rol_id int
-	
-	select 
-		@rol_id = i.rol_id
-	from
-		inserted i
-	delete
-		NEW_SOLUTION.Rol_funcionalidades
-	where
-		rol_id = @rol_id	
 go
-
--- registra login incorrectos
-create trigger NEW_SOLUTION.t_login_insert on NEW_SOLUTION.Login
-for insert
-as 
-	declare @user_id int
-	declare @login_resultado varchar(1)
-	
-	select 
-		@user_id = i.login_user_id,
-		@login_resultado = i.login_resultado
-	from
-		inserted i
-		
-	if exists (select * from NEW_SOLUTION.Login_incorrectos l where l.logfalla_user_id = @user_id) begin
-		if(@login_resultado = 'n') begin
-			-- incremento intento fallido
-			update 			
-				NEW_SOLUTION.Login_incorrectos
-			set
-				logfalla_intento = logfalla_intento + 1
-			where 
-				logfalla_user_id = @user_id
-		end else begin
-			-- pongo a 0 intento fallido
-			update 			
-				NEW_SOLUTION.Login_incorrectos
-			set
-				logfalla_intento = 0
-			where 
-				logfalla_user_id = @user_id
-		end
-	end else begin		
-		if(@login_resultado = 'n') begin
-			-- primer intento fallido
-			insert into 
-				NEW_SOLUTION.Login_incorrectos (logfalla_user_id, logfalla_intento)
-			values 
-				(@user_id, 1)
-		end	
-	end
-go
-
--- intentos fallidos de login
-create trigger NEW_SOLUTION.t_intento_fallido on NEW_SOLUTION.Login_incorrectos
-for update
-as 
-	declare @id int
-	declare @cant int
-	
-	select 
-		@id = i.logfalla_user_id ,
-		@cant = i.logfalla_intento 
-	from 
-		inserted i
-					
-	if(@cant >= 3 ) begin
-		update 
-			NEW_SOLUTION.Usuarios
-		set 
-			usu_estado = 'n'
-		where
-			usu_id = @id
-	end	
-go
-
-----------------------------------------------------------------------------
---						STORE PROCEDURES								  --
-----------------------------------------------------------------------------
 
 -- obtiene funcionalidades (todas o de un rol) 
 create procedure NEW_SOLUTION.sp_funcionalidad_get
@@ -1503,7 +1527,8 @@ begin
 	begin
 		if exists (select * from NEW_SOLUTION.v_usuarios_inactivos u where u.usu_nombre = @username )
 			set @resultado_login = -2; -- usuario dado de baja
-		else begin
+		else
+		begin
 			select 
 				@id_usuario = u.usu_id,
 				@password_usuario = u.usu_password
@@ -1697,3 +1722,34 @@ begin
 	return @id_result;
 end
 go
+
+--------------------------
+--		  PRUEBAS		--
+--------------------------
+--Cargar usuarios para pruebas, el password para todos es w23e
+insert into NEW_SOLUTION.Usuarios(usu_nombre, usu_password)
+values 	('a', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('b', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('c', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('d', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('e', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('f', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('g', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('h', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('i', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7'),
+		('j', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7')		
+
+insert into NEW_SOLUTION.Usuarios_roles (usu_id, rol_id)
+values 	(NEW_SOLUTION.f_get_id('a'), 1),--admin
+		(NEW_SOLUTION.f_get_id('b'), 1),--admin
+		(NEW_SOLUTION.f_get_id('c'), 1),--admin
+		(NEW_SOLUTION.f_get_id('d'), 1),--admin
+		(NEW_SOLUTION.f_get_id('e'), 1),--admin
+		(NEW_SOLUTION.f_get_id('f'), 1),--adimin
+		(NEW_SOLUTION.f_get_id('f'), 2),--cliente		
+		(NEW_SOLUTION.f_get_id('g'), 1),--admin
+		(NEW_SOLUTION.f_get_id('g'), 2),--cliente		
+		(NEW_SOLUTION.f_get_id('h'), 1),--admin
+		(NEW_SOLUTION.f_get_id('h'), 2),--cliente
+		(NEW_SOLUTION.f_get_id('i'), 2),--cliente
+		(NEW_SOLUTION.f_get_id('j'), 2) --cliente
