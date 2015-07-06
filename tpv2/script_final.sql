@@ -964,6 +964,93 @@ go
 --						STORE PROCEDURES								  --
 ----------------------------------------------------------------------------
 
+--Tarjetas
+--1 traer tarjetas vinculadas, sin importar fecha de vencimiento.
+
+--Dice si existe una tarjeta cargada con un numero y un emisor, para un mismo UsuarioID
+create procedure NEW_SOLUTION.existe_tarj_num_emisor_cliente(@num varchar(16),@emisor int,@userID bigint) as
+begin
+	if exists(
+	select * from NEW_SOLUTION.Tarjetas as t 
+	inner join NEW_SOLUTION.Clientes    as c on c.cli_id= t.tarj_cli_id
+	inner join NEW_SOLUTION.Usuarios    as u on u.usu_cli_id=c.cli_id
+	where t.tarj_numero=@num
+	and   t.tarj_emisor=@emisor
+	and   u.usu_id=@userID)
+	return 1
+	else
+	return 0
+	
+	return null
+end
+go
+
+--Desvincular tarjeta.
+create procedure NEW_SOLUTION.sp_desvincular_tarjeta(@tarjID bigint)
+as
+	update  NEW_SOLUTION.Tarjetas
+	set	    tarj_estado=2
+	where   tarj_id=@tarjID
+go
+
+--Actualiza una tarjeta.
+create procedure NEW_SOLUTION.sp_actualizar_tarjeta(@tarjID bigint,@tarjNum varchar(16),@tarjFecEmis datetime,@tarjVenc datetime,@tarjSeg  varchar(3),@tarjEmis int)
+as
+	update  NEW_SOLUTION.Tarjetas
+	set	    tarj_numero=@tarjNum,
+			tarj_fecemision=@tarjFecEmis,
+			tarj_fecvencimiento=@tarjVenc,
+			tarj_codseguridad=@tarjSeg,
+			tarj_emisor=@tarjEmis			
+	where   tarj_id=@tarjID
+go
+
+--Trae una tarjeta en base a su id.
+create procedure NEW_SOLUTION.sp_traer_tarjeta_id(@tarjID bigint)
+as
+	select t.tarj_id,t.tarj_numero,t.tarj_fecemision,t.tarj_fecvencimiento,t.tarj_codseguridad,t.tarj_emisor,t.tarj_estado,t.tarj_cli_id,te.tarjemis_nombre
+	from new_solution.tarjetas as t
+	inner join NEW_SOLUTION.Tarjetas_emisores as te on te.tarjemis_id=t.tarj_emisor
+	where t.tarj_id=@tarjID
+go
+
+--Vincula una tarjeta con un usuario y su cliente.
+create procedure NEW_SOLUTION.sp_vincular_tarjeta(@tarjNum varchar(16),@tarjFecEmis datetime,@tarjVenc datetime,@tarjSeg  varchar(3),@tarjEmis int,@usuId bigint)
+as
+	declare @cliID bigint
+	select top 1 @cliID = usu_cli_id from NEW_SOLUTION.Usuarios where usu_id=@usuId
+	
+	insert into NEW_SOLUTION.Tarjetas(tarj_numero,tarj_fecemision,tarj_fecvencimiento,tarj_codseguridad,tarj_emisor,tarj_estado,tarj_cli_id)
+	values(@tarjNum,@tarjFecEmis,@tarjVenc,@tarjSeg,@tarjEmis,1,@cliID)
+go
+
+--Traer tarjetas vinculadas, sin tener en cuenta fecha de vencimiento.
+create procedure NEW_SOLUTION.sp_traer_tarjetas_vinculadas_userid(@usuId bigint)
+as
+	select a.tarj_id,
+		   a.tarj_numero,
+		   a.tarj_fecemision,
+		   a.tarj_fecvencimiento,
+		   a.tarj_codseguridad,
+		   a.tarj_emisor,
+		   te.tarjemis_nombre,
+		   a.tarj_estado,
+		   a.tarj_cli_id,
+		   u.usu_id
+	from      NEW_SOLUTION.Tarjetas          as a
+	left join NEW_SOLUTION.Tarjetas_emisores as te on te.tarjemis_id=a.tarj_emisor
+	inner join NEW_SOLUTION.Clientes         as c on c.cli_id= a.tarj_cli_id
+	inner join NEW_SOLUTION.Usuarios         as u on u.usu_cli_id=c.cli_id
+	where     a.tarj_estado=1
+	and       u.usu_id=@usuId
+go
+
+--Trae los emisores de tarjetas
+create procedure NEW_SOLUTION.sp_emisores_tarjetas_listar
+as
+	select tarjemis_id,tarjemis_nombre from NEW_SOLUTION.Tarjetas_emisores
+go
+
 --Buscar el numero de cuenta en base a su numero.
 create procedure NEW_SOLUTION.sp_buscar_cta_num(@cuentaNum bigint)
 as

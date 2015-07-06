@@ -49,6 +49,12 @@
             this.pnlListados = new System.Windows.Forms.Panel();
             this.btListadosEstadisticos = new System.Windows.Forms.Button();
             this.pnlCuenta = new System.Windows.Forms.Panel();
+            this.btn_transf = new System.Windows.Forms.Button();
+            this.btn_depositos = new System.Windows.Forms.Button();
+            this.btn_retiros = new System.Windows.Forms.Button();
+            this.btn_saldo_cli = new System.Windows.Forms.Button();
+            this.btn_saldo_admin = new System.Windows.Forms.Button();
+            this.btn_tarjetas = new System.Windows.Forms.Button();
             this.pnlLogin.SuspendLayout();
             this.pnlRol.SuspendLayout();
             this.pnlUsuario.SuspendLayout();
@@ -256,11 +262,77 @@
             this.pnlCuenta.Size = new System.Drawing.Size(200, 52);
             this.pnlCuenta.TabIndex = 8;
             // 
+            // btn_transf
+            // 
+            this.btn_transf.Location = new System.Drawing.Point(692, 203);
+            this.btn_transf.Name = "btn_transf";
+            this.btn_transf.Size = new System.Drawing.Size(136, 23);
+            this.btn_transf.TabIndex = 9;
+            this.btn_transf.Text = "Transferencias";
+            this.btn_transf.UseVisualStyleBackColor = true;
+            this.btn_transf.Click += new System.EventHandler(this.btn_transf_Click);
+            // 
+            // btn_depositos
+            // 
+            this.btn_depositos.Location = new System.Drawing.Point(692, 232);
+            this.btn_depositos.Name = "btn_depositos";
+            this.btn_depositos.Size = new System.Drawing.Size(136, 23);
+            this.btn_depositos.TabIndex = 10;
+            this.btn_depositos.Text = "Depositos";
+            this.btn_depositos.UseVisualStyleBackColor = true;
+            this.btn_depositos.Click += new System.EventHandler(this.btn_depositos_Click);
+            // 
+            // btn_retiros
+            // 
+            this.btn_retiros.Location = new System.Drawing.Point(692, 261);
+            this.btn_retiros.Name = "btn_retiros";
+            this.btn_retiros.Size = new System.Drawing.Size(136, 23);
+            this.btn_retiros.TabIndex = 11;
+            this.btn_retiros.Text = "Retiros";
+            this.btn_retiros.UseVisualStyleBackColor = true;
+            this.btn_retiros.Click += new System.EventHandler(this.btn_retiros_Click);
+            // 
+            // btn_saldo_cli
+            // 
+            this.btn_saldo_cli.Location = new System.Drawing.Point(692, 290);
+            this.btn_saldo_cli.Name = "btn_saldo_cli";
+            this.btn_saldo_cli.Size = new System.Drawing.Size(136, 23);
+            this.btn_saldo_cli.TabIndex = 12;
+            this.btn_saldo_cli.Text = "Saldo Cli";
+            this.btn_saldo_cli.UseVisualStyleBackColor = true;
+            this.btn_saldo_cli.Click += new System.EventHandler(this.btn_saldo_cli_Click);
+            // 
+            // btn_saldo_admin
+            // 
+            this.btn_saldo_admin.Location = new System.Drawing.Point(585, 110);
+            this.btn_saldo_admin.Name = "btn_saldo_admin";
+            this.btn_saldo_admin.Size = new System.Drawing.Size(166, 23);
+            this.btn_saldo_admin.TabIndex = 13;
+            this.btn_saldo_admin.Text = "Saldo Admin";
+            this.btn_saldo_admin.UseVisualStyleBackColor = true;
+            this.btn_saldo_admin.Click += new System.EventHandler(this.btn_saldo_admin_Click);
+            // 
+            // btn_tarjetas
+            // 
+            this.btn_tarjetas.Location = new System.Drawing.Point(692, 319);
+            this.btn_tarjetas.Name = "btn_tarjetas";
+            this.btn_tarjetas.Size = new System.Drawing.Size(136, 23);
+            this.btn_tarjetas.TabIndex = 14;
+            this.btn_tarjetas.Text = "Tarjetas";
+            this.btn_tarjetas.UseVisualStyleBackColor = true;
+            this.btn_tarjetas.Click += new System.EventHandler(this.btn_tarjetas_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 401);
+            this.Controls.Add(this.btn_tarjetas);
+            this.Controls.Add(this.btn_saldo_admin);
+            this.Controls.Add(this.btn_saldo_cli);
+            this.Controls.Add(this.btn_retiros);
+            this.Controls.Add(this.btn_depositos);
+            this.Controls.Add(this.btn_transf);
             this.Controls.Add(this.pnlCuenta);
             this.Controls.Add(this.pnlListados);
             this.Controls.Add(this.pnlSession);
@@ -307,5 +379,11 @@
         private System.Windows.Forms.Button btCuenta;
         private System.Windows.Forms.Button btCuentaClientes;
         private System.Windows.Forms.Panel pnlCuenta;
+        private System.Windows.Forms.Button btn_transf;
+        private System.Windows.Forms.Button btn_depositos;
+        private System.Windows.Forms.Button btn_retiros;
+        private System.Windows.Forms.Button btn_saldo_cli;
+        private System.Windows.Forms.Button btn_saldo_admin;
+        private System.Windows.Forms.Button btn_tarjetas;
     }
 }

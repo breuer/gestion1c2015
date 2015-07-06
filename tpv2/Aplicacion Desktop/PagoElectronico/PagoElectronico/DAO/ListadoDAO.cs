@@ -26,26 +26,26 @@ namespace PagoElectronico.DAO
             parametros.Add(new SqlParameter("fecha_fin", listado.FechaFin));
             return list("", parametros);
         }
-         public DataTable listarClientesConMayorCantidadDeTransaccionesRealizadas(Listado listado)
+        public DataTable listarClientesConMayorCantidadDeTransaccionesRealizadas(Listado listado)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
             parametros.Add(new SqlParameter("fecha_inicio", listado.FechaInicio));
             parametros.Add(new SqlParameter("fecha_fin", listado.FechaFin));
             return list("", parametros);
         }
-         public DataTable listarPaisesConMayorCantidadDeMovimientos(Listado listado)
+        public DataTable listarPaisesConMayorCantidadDeMovimientos(Listado listado)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("fecha_inicio", listado.FechaInicio));
-            parametros.Add(new SqlParameter("fecha_fin", listado.FechaFin));
-            return list("", parametros);
+            parametros.Add(new SqlParameter("inicio", listado.FechaInicio));
+            parametros.Add(new SqlParameter("fin", listado.FechaFin));
+            return list("NEW_SOLUTION.sp_stats_4", parametros);
         }
-         public DataTable listarTotalFacturadosParaLosDistintosTiposDeCuentas(Listado listado)
+        public DataTable listarTotalFacturadosParaLosDistintosTiposDeCuentas(Listado listado)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
-            parametros.Add(new SqlParameter("fecha_inicio", listado.FechaInicio));
-            parametros.Add(new SqlParameter("fecha_fin", listado.FechaFin));
-            return list("", parametros);
+            parametros.Add(new SqlParameter("inicio", listado.FechaInicio));
+            parametros.Add(new SqlParameter("fin", listado.FechaFin));
+            return list("NEW_SOLUTION.sp_stats_5", parametros);
         }
     }
 }
