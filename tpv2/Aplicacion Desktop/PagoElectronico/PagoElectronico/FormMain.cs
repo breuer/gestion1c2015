@@ -18,6 +18,7 @@ using PagoElectronico.Retiros;
 using PagoElectronico.Depositos;
 using PagoElectronico.Saldos;
 using PagoElectronico.Tarjetas;
+using PagoElectronico.Facturacion;
 
 namespace PagoElectronico
 {
@@ -42,6 +43,8 @@ namespace PagoElectronico
                 this.btn_depositos.Visible = false;
                 this.btn_saldo_cli.Visible = false;
                 this.btn_saldo_admin.Visible = false;
+                this.btn_tarjetas.Visible = false;
+                this.btn_fact_cli.Visible = false;
             }
             else
             {
@@ -93,6 +96,14 @@ namespace PagoElectronico
                     if (funcionalidad.Nombre.Equals("Saldo admin"))
                     {
                         this.btn_saldo_admin.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Tarjetas"))
+                    {
+                        this.btn_tarjetas.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Facturacion"))
+                    {
+                        this.btn_fact_cli.Visible = true;
                     }
                 }
             }
@@ -267,6 +278,12 @@ namespace PagoElectronico
         {
             FormTarjetas frmtarj = new FormTarjetas(DataSession.Usuario);
             frmtarj.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormFacturacion fact = new FormFacturacion(DataSession.Usuario);
+            fact.Show();
         }
 
 

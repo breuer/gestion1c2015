@@ -116,5 +116,10 @@ namespace PagoElectronico.Tarjetas
                 this.cargar_tarjetas();
             }
         }
+
+        private void grilla_tarjetas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

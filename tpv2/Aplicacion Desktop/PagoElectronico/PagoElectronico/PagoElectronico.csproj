@@ -99,6 +99,7 @@
     <Compile Include="DAO\ClienteDAO.cs" />
     <Compile Include="DAO\CuentaDAO.cs" />
     <Compile Include="DAO\DepositoDAO.cs" />
+    <Compile Include="DAO\FacturaDAO.cs" />
     <Compile Include="DAO\FuncionalidadDAO.cs" />
     <Compile Include="DAO\IDAO.cs" />
     <Compile Include="DAO\ListadoDAO.cs" />
@@ -117,6 +118,18 @@
     </Compile>
     <Compile Include="Depositos\FormDepositos.designer.cs">
       <DependentUpon>FormDepositos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\FormFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\FormFactura.Designer.cs">
+      <DependentUpon>FormFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\FormFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\FormFacturacion.Designer.cs">
+      <DependentUpon>FormFacturacion.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -151,6 +164,7 @@
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Cuenta.cs" />
     <Compile Include="Model\Deposito.cs" />
+    <Compile Include="Model\Factura.cs" />
     <Compile Include="Model\Funcionalidad.cs" />
     <Compile Include="Model\Listado.cs" />
     <Compile Include="Model\Moneda.cs" />
@@ -192,6 +206,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Depositos\FormDepositos.resx">
       <DependentUpon>FormDepositos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\FormFactura.resx">
+      <DependentUpon>FormFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\FormFacturacion.resx">
+      <DependentUpon>FormFacturacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -290,7 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Consulta Saldos\" />
-    <Folder Include="Facturacion\Depositos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

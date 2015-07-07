@@ -30,11 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.grilla_tarjetas = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.grilla_tarjetas = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla_tarjetas)).BeginInit();
             this.SuspendLayout();
@@ -62,24 +62,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tarjetas asociadas";
             // 
-            // grilla_tarjetas
+            // button4
             // 
-            this.grilla_tarjetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grilla_tarjetas.Location = new System.Drawing.Point(16, 25);
-            this.grilla_tarjetas.Name = "grilla_tarjetas";
-            this.grilla_tarjetas.ReadOnly = true;
-            this.grilla_tarjetas.Size = new System.Drawing.Size(650, 162);
-            this.grilla_tarjetas.TabIndex = 10;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(151, 193);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 38);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Vincular nueva tarjeta";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button4.Location = new System.Drawing.Point(309, 193);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(153, 38);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Desvincular tarjeta";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button2
             // 
@@ -91,6 +82,26 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(151, 193);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(153, 38);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Vincular nueva tarjeta";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // grilla_tarjetas
+            // 
+            this.grilla_tarjetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla_tarjetas.Location = new System.Drawing.Point(16, 25);
+            this.grilla_tarjetas.Name = "grilla_tarjetas";
+            this.grilla_tarjetas.ReadOnly = true;
+            this.grilla_tarjetas.Size = new System.Drawing.Size(650, 162);
+            this.grilla_tarjetas.TabIndex = 10;
+            this.grilla_tarjetas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grilla_tarjetas_CellContentClick);
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(588, 307);
@@ -100,16 +111,6 @@
             this.button3.Text = "Cerrrar";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(309, 193);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(153, 38);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Desvincular tarjeta";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // FormTarjetas
             // 
