@@ -56,6 +56,7 @@
             this.btn_saldo_admin = new System.Windows.Forms.Button();
             this.btn_tarjetas = new System.Windows.Forms.Button();
             this.btn_fact_cli = new System.Windows.Forms.Button();
+            this.btn_fact_admin = new System.Windows.Forms.Button();
             this.pnlLogin.SuspendLayout();
             this.pnlRol.SuspendLayout();
             this.pnlUsuario.SuspendLayout();
@@ -242,12 +243,12 @@
             this.pnlListados.Controls.Add(this.btListadosEstadisticos);
             this.pnlListados.Location = new System.Drawing.Point(585, 30);
             this.pnlListados.Name = "pnlListados";
-            this.pnlListados.Size = new System.Drawing.Size(166, 74);
+            this.pnlListados.Size = new System.Drawing.Size(166, 44);
             this.pnlListados.TabIndex = 7;
             // 
             // btListadosEstadisticos
             // 
-            this.btListadosEstadisticos.Location = new System.Drawing.Point(16, 21);
+            this.btListadosEstadisticos.Location = new System.Drawing.Point(15, 13);
             this.btListadosEstadisticos.Name = "btListadosEstadisticos";
             this.btListadosEstadisticos.Size = new System.Drawing.Size(135, 23);
             this.btListadosEstadisticos.TabIndex = 0;
@@ -305,7 +306,7 @@
             // 
             // btn_saldo_admin
             // 
-            this.btn_saldo_admin.Location = new System.Drawing.Point(585, 110);
+            this.btn_saldo_admin.Location = new System.Drawing.Point(585, 81);
             this.btn_saldo_admin.Name = "btn_saldo_admin";
             this.btn_saldo_admin.Size = new System.Drawing.Size(166, 23);
             this.btn_saldo_admin.TabIndex = 13;
@@ -333,11 +334,23 @@
             this.btn_fact_cli.UseVisualStyleBackColor = true;
             this.btn_fact_cli.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btn_fact_admin
+            // 
+            this.btn_fact_admin.Location = new System.Drawing.Point(585, 110);
+            this.btn_fact_admin.Name = "btn_fact_admin";
+            this.btn_fact_admin.Size = new System.Drawing.Size(166, 23);
+            this.btn_fact_admin.TabIndex = 16;
+            this.btn_fact_admin.Text = "Facturacion admin";
+            this.btn_fact_admin.UseVisualStyleBackColor = true;
+            this.btn_fact_admin.Visible = false;
+            this.btn_fact_admin.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 401);
+            this.Controls.Add(this.btn_fact_admin);
             this.Controls.Add(this.btn_fact_cli);
             this.Controls.Add(this.btn_tarjetas);
             this.Controls.Add(this.btn_saldo_admin);
@@ -356,6 +369,7 @@
             this.Controls.Add(this.pnlLogin);
             this.Name = "FormMain";
             this.Text = "FormMain";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.pnlLogin.ResumeLayout(false);
             this.pnlRol.ResumeLayout(false);
             this.pnlUsuario.ResumeLayout(false);
@@ -398,5 +412,6 @@
         private System.Windows.Forms.Button btn_saldo_admin;
         private System.Windows.Forms.Button btn_tarjetas;
         private System.Windows.Forms.Button btn_fact_cli;
+        private System.Windows.Forms.Button btn_fact_admin;
     }
 }

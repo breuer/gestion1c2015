@@ -101,3 +101,5 @@ C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tpv2\Aplicacion Desktop\Pag
 C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Tarjetas.FormEditar.resources
 C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Facturacion.FormFactura.resources
 C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Facturacion.FormFacturacion.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Facturacion.FormFacturacionAdmin.resources
+C:\Users\Damian\Desktop\UTN\Gestion de datos\Tp\V1.3\tpv2\Aplicacion Desktop\PagoElectronico\PagoElectronico\obj\Debug\PagoElectronico.Facturacion.FacturasCliente.resources

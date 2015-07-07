@@ -45,6 +45,7 @@ namespace PagoElectronico
                 this.btn_saldo_admin.Visible = false;
                 this.btn_tarjetas.Visible = false;
                 this.btn_fact_cli.Visible = false;
+                this.btn_fact_admin.Visible = false;
             }
             else
             {
@@ -104,6 +105,10 @@ namespace PagoElectronico
                     if (funcionalidad.Nombre.Equals("Facturacion"))
                     {
                         this.btn_fact_cli.Visible = true;
+                    }
+                    if (funcionalidad.Nombre.Equals("Facturacion admin"))
+                    {
+                        this.btn_fact_admin.Visible = true;
                     }
                 }
             }
@@ -284,6 +289,17 @@ namespace PagoElectronico
         {
             FormFacturacion fact = new FormFacturacion(DataSession.Usuario);
             fact.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            FormFacturacionAdmin frm = new FormFacturacionAdmin(DataSession.Usuario);
+            frm.Show();
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
         }
 
 

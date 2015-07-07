@@ -357,6 +357,7 @@ create table NEW_SOLUTION.Facturas
 	fact_total_moneda   int,
 	fact_cli_id			bigint,
 	fact_fecha			datetime,
+	fact_user_gen		bigint,
 	primary key(fact_id)
 )
 go
@@ -977,6 +978,22 @@ go
 --						STORE PROCEDURES								  --
 ----------------------------------------------------------------------------
 
+--Buscar clientes.
+create procedure NEW_SOLUTION.sp_buscar_clientes(@tdoc numeric(18,0),@ndoc numeric(18,0))
+as
+	select c.cli_id,c.cli_nombre,c.cli_apellido,c.cli_nacionalidad,p.pais_descrip,c.cli_mail
+	from   NEW_SOLUTION.Clientes as c
+	left join NEW_SOLUTION.Paises as p on p.pais_cod=cli_nacionalidad
+	where  c.cli_tdoc=@tdoc
+	and    c.cli_ndoc=@ndoc
+go
+
+--Obtengo el listado de documentos.
+create procedure NEW_SOLUTION.sp_traer_tipos_doc
+as
+	select tdoc_cod,tdoc_descrip from NEW_SOLUTION.Documentos_tipo
+go	
+
 --Realizo la facturación, obtengo el nuevo idfactura generado.
 create procedure new_solution.sp_facturar_costos(@userID bigint,@fechaSYS datetime)
 as
@@ -1005,8 +1022,8 @@ begin
 		and usu.usu_id=@userID
 		
 		--Obtengo el id cliente.	
-		insert into NEW_SOLUTION.Facturas(fact_total,fact_total_moneda,fact_cli_id,fact_fecha)
-		values(@total,1,NEW_SOLUTION.f_get_cli_user_id(294),@fechaSYS)
+		insert into NEW_SOLUTION.Facturas(fact_total,fact_total_moneda,fact_cli_id,fact_fecha,fact_user_gen)
+		values(@total,1,NEW_SOLUTION.f_get_cli_user_id(@userID),@fechaSYS,@userID)
 		
 		--Actualizo en la tabla conceptos el idfactura.	
 		update fc
@@ -1017,6 +1034,49 @@ begin
 		inner join NEW_SOLUTION.Usuarios   as usu on usu.usu_cli_id=cli.cli_id
 		where fc.faccto_fact_id is null
 		and usu.usu_id=@userID
+		
+		return @@IDENTITY
+			
+	end
+	else
+		return -1 --No hay elementos que facturar
+end
+go
+
+--Realizo la facturación, obtengo el nuevo idfactura generado, exclusivo para el administrador.
+create procedure new_solution.sp_facturar_costos_cliente_admin(@cliID bigint,@fechaSYS datetime)
+as
+begin
+	--Busco si hay elementos que facturar
+	if exists(
+				select fc.factcto_id
+				from  NEW_SOLUTION.facturas_costos as fc
+				inner join NEW_SOLUTION.Cuentas as cta on cta.cta_id=fc.factcto_cta_origen		
+				where fc.faccto_fact_id is null
+				and cta.cta_cli_id=@cliID
+			)
+	begin
+
+		--Calculo el total a pagar.
+		declare @total numeric(18,2)
+		
+		select @total = SUM(fc.factcto_costo)
+		from  NEW_SOLUTION.facturas_costos as fc
+		inner join NEW_SOLUTION.Cuentas    as cta on cta.cta_id=fc.factcto_cta_origen
+		where fc.faccto_fact_id is null
+		and cta.cta_cli_id=@cliID
+		
+		--Obtengo el id cliente.	
+		insert into NEW_SOLUTION.Facturas(fact_total,fact_total_moneda,fact_cli_id,fact_fecha,fact_user_gen)
+		values(@total,1,@cliID,@fechaSYS,-1)
+		
+		--Actualizo en la tabla conceptos el idfactura.	
+		update fc
+		set fc.faccto_fact_id=@@IDENTITY
+		from NEW_SOLUTION.facturas_costos as fc
+		inner join NEW_SOLUTION.Cuentas    as cta on cta.cta_id=fc.factcto_cta_origen
+		where fc.faccto_fact_id is null
+		and cta.cta_cli_id=@cliID
 		
 		return @@IDENTITY
 			
@@ -1059,11 +1119,22 @@ go
 --Traigo todas las facturas de un usuario.
 create procedure NEW_SOLUTION.traer_facturas_usuario(@userID bigint)
 as
-	select fc.fact_id,fc.fact_fecha
+	select fc.fact_id,fc.fact_fecha,fc.fact_total,fc.fact_user_gen
 	from   NEW_SOLUTION.Facturas as fc				
 	inner join NEW_SOLUTION.Clientes as cli on cli.cli_id=fc.fact_cli_id
 	inner join NEW_SOLUTION.Usuarios as usu on usu.usu_cli_id=cli.cli_id
 	where usu.usu_id=@userID
+	order by fc.fact_id desc
+go
+
+
+--Traigo todas las facturas de un cliente.
+create procedure NEW_SOLUTION.traer_facturas_cliente(@cliID bigint)
+as
+	select fc.fact_id,fc.fact_fecha,fc.fact_total,m.moneda_descrip,fc.fact_user_gen
+	from   NEW_SOLUTION.Facturas as fc
+	left join NEW_SOLUTION.Monedas as m on m.moneda_id=fc.fact_total_moneda
+	where fc.fact_cli_id=@cliID
 	order by fc.fact_id desc
 go
 	

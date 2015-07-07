@@ -23,6 +23,17 @@ namespace PagoElectronico.DAO
             return data;
         }
 
+        public DataTable traer_facturas_cliente(int cliID)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("cliID", cliID));
+
+            DataTable data = new DataTable();
+            data = list("NEW_SOLUTION.traer_facturas_cliente", parametros);
+
+            return data;
+        }
+
         public DataTable traer_factura_id(int fact_id)
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
@@ -42,8 +53,29 @@ namespace PagoElectronico.DAO
             DataTable data = new DataTable();
             data = list("NEW_SOLUTION.sp_traer_detalle_factura", parametros);
 
+            return data;        
+        }
+
+        public DataTable traer_documentos_tipo()
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            DataTable data = new DataTable();
+            data = list("NEW_SOLUTION.sp_traer_tipos_doc", parametros);
+
             return data;
-        
+        }
+
+        public DataTable buscar_clientes(int tdoc,int ndoc)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("tdoc", tdoc));
+            parametros.Add(new SqlParameter("ndoc", ndoc));
+
+            DataTable data = new DataTable();
+            data = list("NEW_SOLUTION.sp_buscar_clientes", parametros);
+
+            return data;
         }
 
         public int facturar_usuario(Usuario user)
@@ -52,6 +84,14 @@ namespace PagoElectronico.DAO
             parametros.Add(new SqlParameter("userID", user.Id));
             parametros.Add(new SqlParameter("fechaSys", get_date()));  
             return callProcedure("NEW_SOLUTION.sp_facturar_costos", parametros);
+        }
+
+        public int facturar_cliente(int cliID)
+        {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+            parametros.Add(new SqlParameter("cliID", cliID));
+            parametros.Add(new SqlParameter("fechaSys", get_date()));
+            return callProcedure("NEW_SOLUTION.sp_facturar_costos_cliente_admin", parametros);        
         }
     }
 }

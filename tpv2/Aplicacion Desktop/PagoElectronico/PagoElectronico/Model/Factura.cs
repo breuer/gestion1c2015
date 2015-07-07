@@ -18,6 +18,12 @@ namespace PagoElectronico.Model
             return dao.traer_facturas_usuario(user);
         }
 
+        public DataTable traer_facturas_cliente(int cliID)
+        {
+            FacturaDAO dao = new FacturaDAO();
+            return dao.traer_facturas_cliente(cliID);        
+        }
+
         public DataTable traer_factura_id(int fact_id)
         {
             FacturaDAO dao = new FacturaDAO();
@@ -33,7 +39,25 @@ namespace PagoElectronico.Model
         public int facturar_usuario(Usuario user)
         {
             FacturaDAO dao = new FacturaDAO();
-            return dao.facturar_usuario(user);            
+            return dao.facturar_usuario(user);
+        }
+
+        public int facturar_cliente(int cliID)
+        {
+            FacturaDAO dao = new FacturaDAO();
+            return dao.facturar_cliente(cliID);
+        }
+
+        public DataTable buscar_clientes(int tdoc, int ndoc)
+        {
+            FacturaDAO dao = new FacturaDAO();
+            return dao.buscar_clientes(tdoc,ndoc);        
+        }
+
+        public DataTable traer_documentos_tipo()
+        {
+            FacturaDAO dao = new FacturaDAO();
+            return dao.traer_documentos_tipo();   
         }
     }
        
