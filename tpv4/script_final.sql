@@ -822,7 +822,7 @@ select		distinct
 			(convert(varchar,a.Cli_Pais_codigo)+convert(varchar,a.Cli_Tipo_Doc_Cod)+convert(varchar,a.Cli_Nro_Doc)),
 			a.Cuenta_Pais_Codigo,
 			1,
-			3,--gratuitas
+			99,--tipo cuenta migracion
 			a.Cuenta_Fecha_Creacion,
 			a.cuenta_fecha_cierre,
 			1,
@@ -945,7 +945,7 @@ insert into NEW_SOLUTION.Facturas_costos
 	factcto_fecha,
 	factcto_tipo_op	
 )
-select  
+select  distinct
 		a.Factura_Numero,
 		a.Item_Factura_Importe,
 		a.Cuenta_Numero,
@@ -2265,7 +2265,9 @@ go
 create procedure NEW_SOLUTION.sp_usuario_update
 	@id_usuario int,
 	@id_cliente bigint = null,
-	@password varchar(255) = null
+	@password varchar(255) = null,
+	@fecha_sistema datetime = null
+	
 as
 begin
 	if(@id_cliente is not null)
@@ -2282,7 +2284,8 @@ begin
 		update 
 			NEW_SOLUTION.Usuarios
 		set 
-			usu_password = @password
+			usu_password = @password,
+			usu_fecUltmodif = @fecha_sistema
 		where
 			usu_id = @id_usuario 	
 	end
@@ -2824,7 +2827,6 @@ create procedure NEW_SOLUTION.sp_cuenta_actualizar_estados
 	@fecha_sistema datetime
 as
 begin
-	print @fecha_sistema
 	update NEW_SOLUTION.Cuentas
 		set cta_estado = 4 --cuenta vencida
 	where
@@ -2832,6 +2834,41 @@ begin
 		and cta_estado <> 2
 end
 go
+
+create function NEW_SOLUTION.f_dias_cta_cat(@cta_cat int)
+returns int
+as
+begin
+	declare @dias int
+	select @dias = ctacateg_duracion_dias
+	from NEW_SOLUTION.Cuentas_categ
+	where ctacateg_id = @cta_cat		
+	return @dias
+end
+go
+
+create procedure NEW_SOLUTION.sp_cuenta_actualizar_fechas_vto
+	@fecha_sistema datetime,
+	@tipo_cuenta int
+as
+begin	
+	if(exists (select * from NEW_SOLUTION.Cuentas where cta_tipo = 99))
+	begin		
+		declare @dias int
+		select @dias = ctacateg_duracion_dias
+		from NEW_SOLUTION.Cuentas_categ
+		where ctacateg_id = @tipo_cuenta		
+
+		update NEW_SOLUTION.Cuentas
+		set 
+			cta_fecha_vencimiento = DATEADD(DAY, @dias, @fecha_sistema),
+			cta_tipo = @tipo_cuenta 
+		where
+			cta_tipo = 99
+	end
+end 
+go
+
 
 --------------------------
 --		  PRUEBAS		--
