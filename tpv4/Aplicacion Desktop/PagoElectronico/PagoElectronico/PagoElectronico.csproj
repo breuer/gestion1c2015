@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A425235-25E0-4A09-B3C4-84F19D9A2184}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PagoElectronico</RootNamespace>
+    <AssemblyName>PagoElectronico</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABM Cliente\FormCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cliente\FormCliente.designer.cs">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Cliente\FormSearchCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cliente\FormSearchCliente.designer.cs">
+      <DependentUpon>FormSearchCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormCuenta.designer.cs">
+      <DependentUpon>FormCuenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormListadoCuentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormListadoCuentas.designer.cs">
+      <DependentUpon>FormListadoCuentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormSubscripcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Cuenta\FormSubscripcion.designer.cs">
+      <DependentUpon>FormSubscripcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Usuario\FormSearchUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\FormSearchUsuario.designer.cs">
+      <DependentUpon>FormSearchUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Usuario\FormUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\FormUsuario.designer.cs">
+      <DependentUpon>FormUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Rol\FormRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Rol\FormRol.designer.cs">
+      <DependentUpon>FormRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Rol\FormSearchRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Rol\FormSearchRol.designer.cs">
+      <DependentUpon>FormSearchRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\ClienteDAO.cs" />
+    <Compile Include="DAO\CuentaDAO.cs" />
+    <Compile Include="DAO\DepositoDAO.cs" />
+    <Compile Include="DAO\FacturaDAO.cs" />
+    <Compile Include="DAO\FuncionalidadDAO.cs" />
+    <Compile Include="DAO\IDAO.cs" />
+    <Compile Include="DAO\ListadoDAO.cs" />
+    <Compile Include="DAO\MonedaDAO.cs" />
+    <Compile Include="DAO\PaisDAO.cs" />
+    <Compile Include="DAO\Repository.cs" />
+    <Compile Include="DAO\RetiroDAO.cs" />
+    <Compile Include="DAO\RolDAO.cs" />
+    <Compile Include="DAO\SaldoDAO.cs" />
+    <Compile Include="DAO\TarjetasDAO.cs" />
+    <Compile Include="DAO\TipoCuentaDAO.cs" />
+    <Compile Include="DAO\TipoIdentificacionDAO.cs" />
+    <Compile Include="DAO\TransferenciaDAO.cs" />
+    <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="DataSession.cs" />
+    <Compile Include="Depositos\FormDepositos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Depositos\FormDepositos.designer.cs">
+      <DependentUpon>FormDepositos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\FacturasCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\FacturasCliente.Designer.cs">
+      <DependentUpon>FacturasCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\FormFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\FormFactura.Designer.cs">
+      <DependentUpon>FormFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\FormFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\FormFacturacion.Designer.cs">
+      <DependentUpon>FormFacturacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\FormFacturacionAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturacion\FormFacturacionAdmin.Designer.cs">
+      <DependentUpon>FormFacturacionAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFechaSistema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFechaSistema.Designer.cs">
+      <DependentUpon>FormFechaSistema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listados\FormListadoEstadistico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listados\FormListadoEstadistico.designer.cs">
+      <DependentUpon>FormListadoEstadistico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormChangePassword.designer.cs">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormChooseRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormChooseRol.designer.cs">
+      <DependentUpon>FormChooseRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormLogin.designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\Cuenta.cs" />
+    <Compile Include="Model\Deposito.cs" />
+    <Compile Include="Model\EstadoCuenta.cs" />
+    <Compile Include="Model\Factura.cs" />
+    <Compile Include="Model\Funcionalidad.cs" />
+    <Compile Include="Model\Listado.cs" />
+    <Compile Include="Model\Moneda.cs" />
+    <Compile Include="Model\Pais.cs" />
+    <Compile Include="Model\Retiro.cs" />
+    <Compile Include="Model\Rol.cs" />
+    <Compile Include="Model\Saldo.cs" />
+    <Compile Include="Model\Tarjetas.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\TipoCuenta.cs" />
+    <Compile Include="Model\TipoIdentificacion.cs" />
+    <Compile Include="Model\Transferencia.cs" />
+    <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABM Cliente\FormCliente.resx">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Cliente\FormSearchCliente.resx">
+      <DependentUpon>FormSearchCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Cuenta\FormCuenta.resx">
+      <DependentUpon>FormCuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Cuenta\FormListadoCuentas.resx">
+      <DependentUpon>FormListadoCuentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Cuenta\FormSubscripcion.resx">
+      <DependentUpon>FormSubscripcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Usuario\FormSearchUsuario.resx">
+      <DependentUpon>FormSearchUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Usuario\FormUsuario.resx">
+      <DependentUpon>FormUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Rol\FormRol.resx">
+      <DependentUpon>FormRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Rol\FormSearchRol.resx">
+      <DependentUpon>FormSearchRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Depositos\FormDepositos.resx">
+      <DependentUpon>FormDepositos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\FacturasCliente.resx">
+      <DependentUpon>FacturasCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\FormFactura.resx">
+      <DependentUpon>FormFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\FormFacturacion.resx">
+      <DependentUpon>FormFacturacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\FormFacturacionAdmin.resx">
+      <DependentUpon>FormFacturacionAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFechaSistema.resx">
+      <DependentUpon>FormFechaSistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados\FormListadoEstadistico.resx">
+      <DependentUpon>FormListadoEstadistico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormChangePassword.resx">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormChooseRol.resx">
+      <DependentUpon>FormChooseRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Retiros\FormRetiros.resx">
+      <DependentUpon>FormRetiros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Saldos\FormSaldo_admin.resx">
+      <DependentUpon>FormSaldo_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Saldos\FormSaldo_cliente.resx">
+      <DependentUpon>FormSaldo_cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarjetas\FormEditar.resx">
+      <DependentUpon>FormEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarjetas\FormTarjetas.resx">
+      <DependentUpon>FormTarjetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarjetas\FormVincular.resx">
+      <DependentUpon>FormVincular.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transferencias\FormTransfer.resx">
+      <DependentUpon>FormTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Retiros\FormRetiros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_admin.designer.cs">
+      <DependentUpon>FormSaldo_admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Saldos\FormSaldo_cliente.designer.cs">
+      <DependentUpon>FormSaldo_cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarjetas\FormEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarjetas\FormEditar.Designer.cs">
+      <DependentUpon>FormEditar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarjetas\FormTarjetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarjetas\FormTarjetas.Designer.cs">
+      <DependentUpon>FormTarjetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarjetas\FormVincular.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarjetas\FormVincular.Designer.cs">
+      <DependentUpon>FormVincular.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transferencias\FormTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencias\FormTransfer.designer.cs">
+      <DependentUpon>FormTransfer.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
